@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Laptop = ({ laptop }) => {
-  const { brand, category, description, image, name, numReviews, price, rating } = laptop;
+const ProductItem = ({ product }) => {
+  const { brand, category, description, image, name, numReviews, price, rating } = product;
   return (
     <React.Fragment>
       <img width='130px' src={image} alt='phone' />
@@ -16,4 +16,4 @@ const Laptop = ({ laptop }) => {
   )
 }
 
-export default Laptop;
+export default ProductItem;

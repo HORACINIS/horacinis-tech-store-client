@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Laptop from './Laptop';
 
-const URL = '/api/v1/products/laptops';
+let URL;
+
+switch (process.env.REACT_APP_NODE_ENV) {
+  case 'development':
+    URL = '/api/v1/products/laptops';
+    break;
+  case 'production':
+    URL = 'https://horacinis-tech-store.herokuapp.com/api/v1/products/laptops';
+    break;
+  default:
+    URL = null;
+    break;
+}
 
 const LaptopsList = () => {
   const [laptops, setLaptops] = useState([]);

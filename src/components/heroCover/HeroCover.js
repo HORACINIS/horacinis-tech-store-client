@@ -5,7 +5,8 @@ const HeroCover = () => {
   return (
     <div>
       <h1>HOME PAGE</h1>
-      <Link to='/products/phones'>Phones</Link>
+      <p><Link to='/products/phones'>Phones</Link></p>
+      <p><Link to='/products/laptops'>Laptops</Link></p>
     </div>
   )
 }

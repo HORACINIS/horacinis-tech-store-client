@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import ProductItem from './ProductItem';
 
 const ProductItemsList = ({ product }) => {
@@ -38,6 +39,7 @@ const ProductItemsList = ({ product }) => {
   return (
     <div>
       <h1>{product}</h1>
+      <p><Link to='/'>Home</Link></p>
       <ul>
         {productItems && productItems.map(product => (
           <li key={product._id}><ProductItem product={product} /></li>

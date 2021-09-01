@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import HeroCover from './components/heroCover/HeroCover';
 import ProductItemsList from './components/productItems/ProductItemsList';
-// import PageNotFound from './components/pageNotFound/PageNotFound';
+import PageNotFound from './components/pageNotFound/PageNotFound';
 
 const PRODUCTS = ['phones', 'laptops']; // ADD ANY PRODUCTS ADDED TO THE MONGO DATABASE HERE
 
@@ -22,9 +22,9 @@ const App = () => {
               <ProductItemsList product={product} />
             </Route>
           ))}
-          {/* <Route path='*'>
+          <Route path='*'>
             <PageNotFound />
-          </Route> */}
+          </Route>
         </Switch>
       </div>
     </React.Fragment>

@@ -17,7 +17,7 @@ const App = () => {
           <HeroCover />
         </Route>
         {PRODUCTS.map((product, index) => (
-          <Route path={`/products/${product}`} key={index}>
+          <Route exact path={`/products/${product}`} key={index}>
             <ProductItemsList product={product} />
           </Route>
         ))}

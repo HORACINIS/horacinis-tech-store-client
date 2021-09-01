@@ -31,11 +31,11 @@ const ProductItemsList = ({ product }) => {
 
   useEffect(() => {
     fetchPhones();
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
-      <h1>Phones List Component</h1>
+      <h1>{product}</h1>
       <ul>
         {productItems && productItems.map(product => (
           <li key={product._id}><ProductItem product={product} /></li>

@@ -7,9 +7,11 @@ const ProductItemsList = ({ product }) => {
   switch (process.env.REACT_APP_NODE_ENV) {
     case 'development':
       URL = `/api/v1/products/${product}`;
+      console.log(URL)
       break;
     case 'production':
       URL = `https://horacinis-tech-store.herokuapp.com/api/v1/products/${product}`;
+      console.log(URL)
       break;
     default:
       URL = '';

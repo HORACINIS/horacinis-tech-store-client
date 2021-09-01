@@ -11,8 +11,8 @@ console.log(`Client is running in ${process.env.REACT_APP_NODE_ENV.toUpperCase()
 const App = () => {
 
   return (
-    <React.Fragment>
-      <Switch>
+    <Switch>
+      <React.Fragment>
         <Route exact path='/'>
           <HeroCover />
         </Route>
@@ -24,8 +24,8 @@ const App = () => {
         {/* <Route path='*'>
           <PageNotFound />
         </Route> */}
-      </Switch>
-    </React.Fragment>
+      </React.Fragment>
+    </Switch>
   );
 }
 

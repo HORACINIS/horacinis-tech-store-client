@@ -12,21 +12,19 @@ const App = () => {
 
   return (
     <React.Fragment>
-      <div>
-        <Switch>
-          <Route exact path='/'>
-            <HeroCover />
+      <Switch>
+        <Route exact path='/'>
+          <HeroCover />
+        </Route>
+        {PRODUCTS.map((product, index) => (
+          <Route path={`/products/${product}`} key={index}>
+            <ProductItemsList product={product} />
           </Route>
-          {PRODUCTS.map((product, index) => (
-            <Route path={`/products/${product}`} key={index}>
-              <ProductItemsList product={product} />
-            </Route>
-          ))}
-          <Route path='*'>
-            <PageNotFound />
-          </Route>
-        </Switch>
-      </div>
+        ))}
+        <Route path='*'>
+          <PageNotFound />
+        </Route>
+      </Switch>
     </React.Fragment>
   );
 }

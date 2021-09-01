@@ -5,7 +5,7 @@ const HeroCover = () => {
   return (
     <div>
       <h1>HOME PAGE</h1>
-      <Link to='https://horacinis-tech-store.netlify.app/products/phones'>Phones</Link>
+      <Link to='/products/phones'>Phones</Link>
     </div>
   )
 }

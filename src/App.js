@@ -21,9 +21,9 @@ const App = () => {
             <ProductItemsList product={product} />
           </Route>
         ))}
-        <Route path='*'>
+        {/* <Route path='*'>
           <PageNotFound />
-        </Route>
+        </Route> */}
       </Switch>
     </React.Fragment>
   );

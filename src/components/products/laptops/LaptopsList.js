@@ -11,7 +11,7 @@ switch (process.env.REACT_APP_NODE_ENV) {
     URL = 'https://horacinis-tech-store.herokuapp.com/api/v1/products/laptops';
     break;
   default:
-    URL = null;
+    URL = '';
     break;
 }
 
@@ -44,4 +44,4 @@ const LaptopsList = () => {
   )
 }
 
-export default LaptopsList
+export default LaptopsList;

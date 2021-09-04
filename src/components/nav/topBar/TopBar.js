@@ -1,5 +1,8 @@
 import React from 'react';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+
+// import { alpha, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -13,7 +16,7 @@ import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import CartIcon from '@material-ui/icons/ShoppingCart';
 // import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
+// import MoreIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -23,15 +26,20 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    display: 'none',
+    // display: 'none',
+    display: 'block',
     fontFamily: 'Bangers',
     fontSize: '2em',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.5em'
     },
   },
   titleInitials: {
-    // fontFamily: 'Press Start 2P, cursive',
+    display: 'none',
+    fontFamily: 'Press Start 2P, cursive',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    }
   },
   // search: {
   //   position: 'relative',
@@ -70,18 +78,18 @@ const useStyles = makeStyles((theme) => ({
   //     width: '20ch',
   //   },
   // },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
+  // sectionDesktop: {
+  //   display: 'none',
+  //   [theme.breakpoints.up('md')]: {
+  //     display: 'flex',
+  //   },
+  // },
+  // sectionMobile: {
+  //   display: 'flex',
+  //   [theme.breakpoints.up('md')]: {
+  //     display: 'none',
+  //   },
+  // },
 }));
 
 export default function PrimarySearchAppBar() {
@@ -105,9 +113,9 @@ export default function PrimarySearchAppBar() {
     handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+  // const handleMobileMenuOpen = (event) => {
+  //   setMobileMoreAnchorEl(event.currentTarget);
+  // };
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (

@@ -13,7 +13,7 @@ const App = () => {
 
   return (
     <React.Fragment>
-      <NavbarComponent />
+      <NavbarComponent products={PRODUCTS} />
       <Switch>
         <Route exact path='/'>
           <HeroCover />

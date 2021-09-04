@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import NavbarComponent from './components/nav/NavbarComponent';
+import TopBar from './components/nav/topBar/TopBar';
+import NavigationBar from './components/nav/navigationBar/NavigationBar';
 import HeroCover from './components/heroCover/HeroCover';
 import ProductItemsList from './components/productItems/ProductItemsList';
 import PageNotFound from './components/pageNotFound/PageNotFound';
@@ -13,7 +14,8 @@ const App = () => {
 
   return (
     <React.Fragment>
-      <NavbarComponent />
+      <TopBar />
+      <NavigationBar products={PRODUCTS} />
       <Switch>
         <Route exact path='/'>
           <HeroCover />

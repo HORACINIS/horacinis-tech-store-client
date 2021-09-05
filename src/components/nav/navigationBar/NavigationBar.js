@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -36,8 +36,8 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
   return {
-    id: `scrollable-auto-tab-${index}`,
-    'aria-controls': `scrollable-auto-tabpanel-${index}`,
+    id: `scrollable-force-tab-${index}`,
+    'aria-controls': `scrollable-force-tabpanel-${index}`,
   };
 }
 
@@ -51,11 +51,12 @@ const useStyles = makeStyles((theme) => ({
 
 const NavigationBar = ({ products }) => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState();
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setValue(window.location.pathname === '/' ? false : newValue);
     console.log(newValue)
+    console.log(window.location.pathname)
   };
 
   return (
@@ -67,19 +68,19 @@ const NavigationBar = ({ products }) => {
           indicatorColor="primary"
           textColor="primary"
           variant="scrollable"
-          scrollButtons="auto"
-          aria-label="scrollable auto tabs example"
+          scrollButtons="on"
+          aria-label="scrollable force tabs example"
         >
           {products.map((product, index) => (
             <Tab key={index} label={product} component={Link} to={`/products/${product}`} {...a11yProps({ index })} />
           ))}
-          <Tab label="test" {...a11yProps(0)} />
-          <Tab label="test" {...a11yProps(1)} />
           <Tab label="test" {...a11yProps(2)} />
           <Tab label="test" {...a11yProps(3)} />
           <Tab label="test" {...a11yProps(4)} />
           <Tab label="test" {...a11yProps(5)} />
           <Tab label="test" {...a11yProps(6)} />
+          <Tab label="test" {...a11yProps(7)} />
+          <Tab label="test" {...a11yProps(8)} />
         </Tabs>
       </AppBar>
     </div >

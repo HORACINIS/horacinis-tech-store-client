@@ -1,18 +1,36 @@
 import React from 'react';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  control: {
+    padding: theme.spacing(1),
+  },
+  image: {
+    width: 150,
+  },
+}));
 
 const ProductItem = ({ product }) => {
-  const { brand, category, description, image, name, numReviews, price, rating } = product;
+  const classes = useStyles();
+
+  const { brand, category, image, name, numReviews, price, rating } = product;
   return (
-    <React.Fragment>
-      <img width='130px' src={image} alt='phone' />
-      <p>Name: {name}</p>
-      <p>Brand: {brand}</p>
-      <p>Category: {category}</p>
-      <p>Description: {description}</p>
-      <p>Rating: {rating}</p>
-      <p>Num Reviews: {numReviews}</p>
-      <p>Price: ${price}</p>
-    </React.Fragment>
+
+    <Paper className={classes.control} >
+      <>
+        <Typography variant='subtitle2' align='left'>Horacinis Morancinis Espinozaninis hehehe probando testeando {name}</Typography>
+        <div align='center'>
+          <img className={classes.image} src={image} alt='phone' />
+        </div>
+        <p>Brand: {brand}</p>
+        <p>Category: {category}</p>
+        <p>Rating: {rating}</p>
+        <p>Num Reviews: {numReviews}</p>
+        <p>Price: ${price}</p>
+      </>
+    </Paper>
   )
 }
 

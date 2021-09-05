@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NavigationBar = ({ products }) => {
   const classes = useStyles();
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(window.location.pathname === '/' ? false : newValue);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -6,7 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -51,13 +51,32 @@ const useStyles = makeStyles((theme) => ({
 
 const NavigationBar = ({ products }) => {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const history = useHistory();
+  const [value, setValue] = useState(false);
 
   const handleChange = (event, newValue) => {
-    setValue(window.location.pathname === '/' ? false : newValue);
-    console.log(newValue)
-    console.log(window.location.pathname)
+    // if (history.location.pathname === '/') {
+    //   console.log(history.location.pathname)
+    //   setValue(false)
+    // } else {
+    //   setValue(newValue)
+    // }
+    setValue(newValue)
   };
+
+  useEffect(() => {
+    if (history.location.pathname !== '/') {
+      products.forEach((product, index) => {
+        if (history.location.pathname === `/products/${product}`) {
+          setValue(index);
+        }
+      });
+    }
+    if (history.location.pathname === '/') {
+      // console.log('HOME PAGE HISTORY', history.location.pathname)
+      setValue(false);
+    }
+  }, [value, history.location.pathname, products])
 
   return (
     <div className={classes.root}>
@@ -72,15 +91,15 @@ const NavigationBar = ({ products }) => {
           aria-label="scrollable force tabs example"
         >
           {products.map((product, index) => (
-            <Tab key={index} label={product} component={Link} to={`/products/${product}`} {...a11yProps({ index })} />
+            <Tab key={index} label={product} component={Link} to={`/products/${product}`} {...a11yProps({ value })} />
           ))}
-          <Tab label="test" {...a11yProps(2)} />
-          <Tab label="test" {...a11yProps(3)} />
-          <Tab label="test" {...a11yProps(4)} />
-          <Tab label="test" {...a11yProps(5)} />
-          <Tab label="test" {...a11yProps(6)} />
-          <Tab label="test" {...a11yProps(7)} />
-          <Tab label="test" {...a11yProps(8)} />
+          <Tab label="test" component={Link} to={'/products/test2'} {...a11yProps(2)} />
+          <Tab label="test" component={Link} to={'/products/test3'} {...a11yProps(3)} />
+          <Tab label="test" component={Link} to={'/products/test4'} {...a11yProps(4)} />
+          <Tab label="test" component={Link} to={'/products/test5'} {...a11yProps(5)} />
+          <Tab label="test" component={Link} to={'/products/test6'} {...a11yProps(6)} />
+          <Tab label="test" component={Link} to={'/products/test7'} {...a11yProps(7)} />
+          <Tab label="test" component={Link} to={'/products/test8'} {...a11yProps(8)} />
         </Tabs>
       </AppBar>
     </div >

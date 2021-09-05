@@ -36,8 +36,8 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
   return {
-    id: `scrollable-auto-tab-${index}`,
-    'aria-controls': `scrollable-auto-tabpanel-${index}`,
+    id: `scrollable-force-tab-${index}`,
+    'aria-controls': `scrollable-force-tabpanel-${index}`,
   };
 }
 
@@ -67,8 +67,8 @@ const NavigationBar = ({ products }) => {
           indicatorColor="primary"
           textColor="primary"
           variant="scrollable"
-          scrollButtons="auto"
-          aria-label="scrollable auto tabs example"
+          scrollButtons="on"
+          aria-label="scrollable force tabs example"
         >
           {products.map((product, index) => (
             <Tab key={index} label={product} component={Link} to={`/products/${product}`} {...a11yProps({ index })} />

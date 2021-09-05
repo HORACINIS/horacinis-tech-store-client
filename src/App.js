@@ -21,10 +21,10 @@ const App = () => {
           <HeroCover />
         </Route>
         {PRODUCTS.map((product, index) => (
-          // <Route exact path={`/products/${product}`} key={index}>
-          //   <ProductItemsList product={product} />
-          // </Route>
-          <Route key={index} exact path={`/products/${product}`} render={(props) => <ProductItemsList {...props} product={product} />} />
+          <Route exact path={`/products/${product}`} key={index}>
+            <ProductItemsList product={product} />
+          </Route>
+          // <Route key={index} exact path={`/products/${product}`} render={(props) => <ProductItemsList {...props} product={product} />} />
         ))}
         <Route path='*'>
           <PageNotFound />

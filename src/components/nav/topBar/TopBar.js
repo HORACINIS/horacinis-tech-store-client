@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // import { alpha, makeStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
@@ -28,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
   title: {
     // display: 'none',
     display: 'block',
+    color: 'inherit',
+    textDecoration: 'none',
     fontFamily: 'Bangers',
     fontSize: '2em',
     [theme.breakpoints.down('xs')]: {
@@ -190,9 +193,10 @@ export default function PrimarySearchAppBar() {
               H T S
             </Typography>
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography component={Link} to='/' className={classes.title} variant="h6" noWrap>
             Horacinis Tech Store
           </Typography>
+
           {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

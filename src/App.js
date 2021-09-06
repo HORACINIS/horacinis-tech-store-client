@@ -17,18 +17,16 @@ const App = () => {
   const [cart, setCart] = useState(cartFromLocalStorage);
 
   const handleAddToCart = (productSelected) => {
-    // cart.filter(product => {
-    //   let producto;
-    //   if (productSelected._id === product._id) {
-    //     product = { ...product, quantity: product.quantity + 1 }
-    //     console.log(producto)
-    //   }
-    //   return product;
-    // })
+    let newCart = [...cart];
+    let itemInCart = newCart.find(product => product._id === productSelected._id);
 
-    setCart(() => {
-      return [...cart, { ...productSelected, quantity: 1 }]
-    });
+    if (itemInCart) {
+      itemInCart.quantity++;
+    } else {
+      itemInCart = { ...productSelected, quantity: 1 }
+      newCart.push(itemInCart);
+    }
+    setCart(newCart);
   }
 
   useEffect(() => {

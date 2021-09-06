@@ -1,16 +1,10 @@
 import React from 'react';
 
 const ShoppingCart = ({ cartItems }) => {
-  // const [total, setTotal] = useState(0);
 
-  const getTotal = () => {
-    return cartItems.reduce((sum, { price }) => sum + price, 0);
-    // setTotal(totalSum);
+  const getTotalPrice = () => {
+    return cartItems.reduce((sum, { price, quantity }) => sum + price * quantity, 0);
   }
-
-  // useEffect(() => {
-  //   getTotal();
-  // }, [total])
 
   return (
     <div>
@@ -20,11 +14,13 @@ const ShoppingCart = ({ cartItems }) => {
           <li key={product._id}>
             <p>{product.name}</p>
             <p><img width='100px' src={product.image} alt='phone' /></p>
+            <p>Quantity: {product.quantity}</p>
+            <p>Description: {product.description}</p>
             <p>${product.price}</p>
           </li>
         ))}
       </ul>
-      <h3>Total: ${getTotal()}</h3>
+      <h3>Total: ${getTotalPrice()}</h3>
     </div>
   )
 }

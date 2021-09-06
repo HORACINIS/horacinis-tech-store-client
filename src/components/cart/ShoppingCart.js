@@ -15,6 +15,11 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
     setCartItems(newCart)
   }
 
+  const handleRemoveSingleProduct = (productSelected) => {
+    const productsLeft = cartItems.filter(product => product._id !== productSelected._id);
+    setCartItems(productsLeft);
+  }
+
   const handleClearCart = () => {
     setCartItems([]);
     setTimeout(() => alert('Cart Cleared!'), 0);
@@ -32,6 +37,9 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
             </p>
             <p>Description: {product.description}</p>
             <p>${product.price}</p>
+            <Button variant='outlined' color='secondary' onClick={() => handleRemoveSingleProduct(product)}>
+              Remove
+            </Button>
           </li>
         ))}
       </ul>

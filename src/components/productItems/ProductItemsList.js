@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import ProductItem from './ProductItem';
 import Grid from '@material-ui/core/Grid';
 
-const ProductItemsList = ({ product }) => {
+const ProductItemsList = ({ product, addToCartFunc }) => {
 
 
   let URL;
@@ -45,7 +45,9 @@ const ProductItemsList = ({ product }) => {
       <p><Link to='/'>Home</Link></p>
       <Grid container justifyContent="center" spacing={2}>
         {productItems && productItems.map(product => (
-          <Grid item display='flex' key={product._id} xs={6} sm={4} lg={3}><ProductItem product={product} /></Grid>
+          <Grid item display='flex' key={product._id} xs={6} sm={4} lg={3}>
+            <ProductItem product={product} addToCartFunc={addToCartFunc} />
+          </Grid>
         ))}
       </Grid>
     </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const ShoppingCart = () => {
   return (
@@ -8,4 +8,4 @@ const ShoppingCart = () => {
   )
 }
 
-export default ShoppingCart
+export default ShoppingCart;

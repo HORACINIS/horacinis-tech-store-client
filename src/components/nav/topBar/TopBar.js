@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   // },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar({ cartItems }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -211,11 +211,13 @@ export default function PrimarySearchAppBar() {
             />
           </div> */}
           <div className={classes.grow} />
-          <IconButton aria-label="show 4 new mails" color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <CartIcon />
-            </Badge>
-          </IconButton>
+          {/* <Link to='/cart'> */}
+            <IconButton aria-label="show 4 new mails" color="inherit" component={Link} to='/cart'>
+              <Badge badgeContent={cartItems.length} color="secondary">
+                <CartIcon />
+              </Badge>
+            </IconButton>
+          {/* </Link> */}
           <IconButton
             edge="end"
             aria-label="account of current user"

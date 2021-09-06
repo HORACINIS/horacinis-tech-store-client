@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import TopBar from './components/nav/topBar/TopBar';
+import ShoppingCart from './components/cart/ShoppingCart';
 import NavigationBar from './components/nav/navigationBar/NavigationBar';
 import HeroCover from './components/heroCover/HeroCover';
 import ProductItemsList from './components/productItems/ProductItemsList';
@@ -13,15 +14,20 @@ console.log(`Client is running in ${process.env.REACT_APP_NODE_ENV.toUpperCase()
 const App = () => {
   const [cart, setCart] = useState([]);
 
-  const addToCart = (productSelected) => {
+  const handleAddToCart = (productSelected) => {
     setCart([...cart, { ...productSelected }]);
+    console.log(cart)
   }
+
+  useEffect(() => {
+    console.log(cart);
+  }, [cart])
 
 
 
   return (
     <React.Fragment>
-      <TopBar />
+      <TopBar cartItems={cart} />
       <NavigationBar products={PRODUCTS} />
       <Switch>
         <Route exact path='/'>
@@ -29,10 +35,13 @@ const App = () => {
         </Route>
         {PRODUCTS.map((product, index) => (
           <Route exact path={`/products/${product}`} key={index}>
-            <ProductItemsList product={product} />
+            <ProductItemsList product={product} addToCartFunc={handleAddToCart} />
           </Route>
           // <Route key={index} exact path={`/products/${product}`} render={(props) => <ProductItemsList {...props} product={product} />} />
         ))}
+        <Route exact path='/cart'>
+          <ShoppingCart />
+        </Route>
         <Route path='*'>
           <PageNotFound />
         </Route>

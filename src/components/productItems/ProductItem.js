@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, addToCartFunc }) => {
   const classes = useStyles();
 
   const { image, name, numReviews, price, rating } = product;
@@ -32,7 +32,7 @@ const ProductItem = ({ product }) => {
         <Paper>
           <span>${price}</span>
           <Button color='primary' variant='text'
-          onClick={() => console.log(product)}
+            onClick={() => addToCartFunc(product)}
           >Add to Cart
           </Button>
         </Paper>

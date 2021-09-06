@@ -5,6 +5,7 @@ import ShoppingCart from './components/cart/ShoppingCart';
 import NavigationBar from './components/nav/navigationBar/NavigationBar';
 import HeroCover from './components/heroCover/HeroCover';
 import ProductItemsList from './components/productItems/ProductItemsList';
+import SingleItemDisplay from './components/productItems/singleItem/SingleItemView';
 import PageNotFound from './components/pageNotFound/PageNotFound';
 
 const PRODUCTS = ['phones', 'laptops']; // ADD ANY PRODUCTS ADDED TO THE MONGO DATABASE HERE
@@ -48,6 +49,15 @@ const App = () => {
           </Route>
           // <Route key={index} exact path={`/products/${product}`} render={(props) => <ProductItemsList {...props} product={product} />} />
         ))}
+
+        {PRODUCTS.map((product, index) => (
+          <Route key={index} exact path={`/products/${product}/:_id`}>
+            {console.log(`/products/${product}/:_id`)}
+            <SingleItemDisplay product={product} />
+          </Route>
+        ))}
+
+
         <Route exact path='/cart'>
           <ShoppingCart cartItems={cart} setCartItems={setCart} />
         </Route>

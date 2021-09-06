@@ -25,7 +25,7 @@ const ProductItemsList = ({ product, addToCartFunc }) => {
 
   const [productItems, setProductItems] = useState([]);
 
-  const fetchPhones = async () => {
+  const fetchItems = async () => {
     try {
       const response = await fetch(URL);
       const data = await response.json();
@@ -36,7 +36,7 @@ const ProductItemsList = ({ product, addToCartFunc }) => {
   }
 
   useEffect(() => {
-    fetchPhones();
+    fetchItems();
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-const SingleItemDisplay = ({ products }) => {
-  const { name } = useParams();
+const SingleItemDisplay = ({ product }) => {
+  const { _id } = useParams();
   return (
     <div>
       {/* {products.filter(product => product.name === name).map((product, index) => (
@@ -11,7 +11,10 @@ const SingleItemDisplay = ({ products }) => {
           <img width='200px' src={product.image} alt='product' />
         </div>
       ))} */}
-      <h1>{products.name}</h1>
+      <h1>mamascalo</h1>
+      <h1>{product}</h1>
+      <h1>{product.name}</h1>
+      <h1>{product._id}</h1>
     </div>
   )
 }

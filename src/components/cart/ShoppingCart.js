@@ -23,6 +23,7 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
   const handleClearCart = () => {
     setCartItems([]);
     setTimeout(() => alert('Cart Cleared!'), 0);
+    setTimeout(() => window.location.pathname = '/products/phones', 250);
   }
 
   return (

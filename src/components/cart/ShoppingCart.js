@@ -28,7 +28,11 @@ const ShoppingCart = ({ cartItems, clearCartFunc }) => {
         </div>
         )
         :
-        (<h1>Shopping Cart Empty!</h1>)
+        (<div>
+          <h1>Shopping Cart Empty!</h1>
+          <h2>(Go and add items)</h2>
+        </div>
+        )
       }
       <img src={underConstruction} alt='building' />
     </div>

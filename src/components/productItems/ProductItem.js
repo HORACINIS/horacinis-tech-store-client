@@ -2,6 +2,8 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ReviewsComponent from './ReviewsComponent';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, addToCartFunc }) => {
   const classes = useStyles();
 
   const { image, name, numReviews, price, rating } = product;
@@ -25,7 +27,18 @@ const ProductItem = ({ product }) => {
       <div align='center'>
         <img className={classes.image} src={image} alt='phone' />
       </div>
-      <p>${price}</p>
+
+      <Grid container>
+        <Paper>
+          <span>${price}</span>
+          <Button color='primary' variant='text'
+            onClick={() => addToCartFunc(product)}
+          >Add to Cart
+          </Button>
+        </Paper>
+
+
+      </Grid>
     </Paper>
   )
 }

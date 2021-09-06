@@ -11,17 +11,22 @@ const PRODUCTS = ['phones', 'laptops']; // ADD ANY PRODUCTS ADDED TO THE MONGO D
 
 console.log(`Client is running in ${process.env.REACT_APP_NODE_ENV.toUpperCase()} mode!`);
 
+
 const App = () => {
-  const [cart, setCart] = useState([]);
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]');
+  const [cart, setCart] = useState(cartFromLocalStorage);
 
   const handleAddToCart = (productSelected) => {
-    setCart([...cart, { ...productSelected }]);
+    setCart(() => {
+      return [...cart, { ...productSelected }]
+    });
+
     console.log(cart)
   }
 
   useEffect(() => {
-    console.log(cart);
-  }, [cart])
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
 
 

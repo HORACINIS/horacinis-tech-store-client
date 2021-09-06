@@ -120,6 +120,10 @@ export default function PrimarySearchAppBar({ cartItems }) {
   //   setMobileMoreAnchorEl(event.currentTarget);
   // };
 
+  const getProductsQuantity = () => {
+    return cartItems.reduce((sum, { quantity }) => sum + quantity, 0);
+  }
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -212,7 +216,7 @@ export default function PrimarySearchAppBar({ cartItems }) {
           </div> */}
           <div className={classes.grow} />
           <IconButton aria-label="show 4 new mails" color="inherit" component={Link} to='/cart'>
-            <Badge badgeContent={cartItems.length} color="secondary">
+            <Badge badgeContent={getProductsQuantity()} color="secondary">
               <CartIcon />
             </Badge>
           </IconButton>

@@ -15,6 +15,7 @@ const ShoppingCart = ({ cartItems }) => {
             <p>{product.name}</p>
             <p><img width='100px' src={product.image} alt='phone' /></p>
             <p>Quantity: {product.quantity}</p>
+            <p>Description: {product.description}</p>
             <p>${product.price}</p>
           </li>
         ))}

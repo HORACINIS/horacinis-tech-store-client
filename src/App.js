@@ -17,11 +17,18 @@ const App = () => {
   const [cart, setCart] = useState(cartFromLocalStorage);
 
   const handleAddToCart = (productSelected) => {
-    setCart(() => {
-      return [...cart, { ...productSelected }]
-    });
+    // cart.filter(product => {
+    //   let producto;
+    //   if (productSelected._id === product._id) {
+    //     product = { ...product, quantity: product.quantity + 1 }
+    //     console.log(producto)
+    //   }
+    //   return product;
+    // })
 
-    console.log(cart)
+    setCart(() => {
+      return [...cart, { ...productSelected, quantity: 1 }]
+    });
   }
 
   useEffect(() => {
@@ -45,7 +52,7 @@ const App = () => {
           // <Route key={index} exact path={`/products/${product}`} render={(props) => <ProductItemsList {...props} product={product} />} />
         ))}
         <Route exact path='/cart'>
-          <ShoppingCart />
+          <ShoppingCart cartItems={cart} />
         </Route>
         <Route path='*'>
           <PageNotFound />

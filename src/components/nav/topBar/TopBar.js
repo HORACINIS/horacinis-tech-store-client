@@ -211,13 +211,11 @@ export default function PrimarySearchAppBar({ cartItems }) {
             />
           </div> */}
           <div className={classes.grow} />
-          {/* <Link to='/cart'> */}
-            <IconButton aria-label="show 4 new mails" color="inherit" component={Link} to='/cart'>
-              <Badge badgeContent={cartItems.length} color="secondary">
-                <CartIcon />
-              </Badge>
-            </IconButton>
-          {/* </Link> */}
+          <IconButton aria-label="show 4 new mails" color="inherit" component={Link} to='/cart'>
+            <Badge badgeContent={cartItems.length} color="secondary">
+              <CartIcon />
+            </Badge>
+          </IconButton>
           <IconButton
             edge="end"
             aria-label="account of current user"

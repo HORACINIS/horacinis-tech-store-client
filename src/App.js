@@ -29,6 +29,11 @@ const App = () => {
     setCart(newCart);
   }
 
+  const handleClearCart = () => {
+    setCart([]);
+    setTimeout(() => alert('Cart Cleared!'), 0);
+  }
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
@@ -50,7 +55,7 @@ const App = () => {
           // <Route key={index} exact path={`/products/${product}`} render={(props) => <ProductItemsList {...props} product={product} />} />
         ))}
         <Route exact path='/cart'>
-          <ShoppingCart cartItems={cart} />
+          <ShoppingCart cartItems={cart} clearCartFunc={handleClearCart} />
         </Route>
         <Route path='*'>
           <PageNotFound />

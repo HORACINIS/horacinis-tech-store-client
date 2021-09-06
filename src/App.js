@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import TopBar from './components/nav/topBar/TopBar';
 import NavigationBar from './components/nav/navigationBar/NavigationBar';
@@ -11,6 +11,13 @@ const PRODUCTS = ['phones', 'laptops']; // ADD ANY PRODUCTS ADDED TO THE MONGO D
 console.log(`Client is running in ${process.env.REACT_APP_NODE_ENV.toUpperCase()} mode!`);
 
 const App = () => {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (productSelected) => {
+    setCart([...cart, { ...productSelected }]);
+  }
+
+
 
   return (
     <React.Fragment>

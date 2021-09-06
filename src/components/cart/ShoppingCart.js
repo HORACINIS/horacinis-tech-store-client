@@ -2,21 +2,21 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import underConstruction from './../../assets/under-construction.png';
 
-const ShoppingCart = ({ cartItems, setCart}) => {
+const ShoppingCart = ({ cartItems, setCartItems }) => {
 
   const getTotalPrice = () => {
     return cartItems.reduce((sum, { price, quantity }) => sum + price * quantity, 0);
   }
 
-  const increaseDecreaseQuantity = (e, product) => {
-    if (e.target.value === 2) {
-      product.quantity++;
-    }
-    console.log(e.target)
+  const increaseDecreaseQuantity = (quantity, productItem) => {
+    let newCart = [...cartItems];
+    newCart.find(product => product._id === productItem._id).quantity = quantity;
+
+    setCartItems(newCart)
   }
 
   const handleClearCart = () => {
-    setCart([]);
+    setCartItems([]);
     setTimeout(() => alert('Cart Cleared!'), 0);
   }
 
@@ -27,10 +27,8 @@ const ShoppingCart = ({ cartItems, setCart}) => {
           <li key={product._id}>
             <p>{product.name}</p>
             <p><img width='100px' src={product.image} alt='phone' /></p>
-            <p>Quantity:
-              {/* <button onClick={() => product.quantity - 1}>-</button> */}
-              <input type='number' min='1' onChange={(e) => increaseDecreaseQuantity(e, product)} value={product.quantity} />
-              {/* <button onClick={() => product.quantity - 1}>+</button> */}
+            <p>
+              Quantity: <input type='number' min='1' max='10' onChange={(e) => increaseDecreaseQuantity(e.target.value, product)} value={product.quantity} />
             </p>
             <p>Description: {product.description}</p>
             <p>${product.price}</p>

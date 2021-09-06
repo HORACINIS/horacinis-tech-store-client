@@ -49,7 +49,7 @@ const App = () => {
           // <Route key={index} exact path={`/products/${product}`} render={(props) => <ProductItemsList {...props} product={product} />} />
         ))}
         <Route exact path='/cart'>
-          <ShoppingCart cartItems={cart} setCart={setCart} />
+          <ShoppingCart cartItems={cart} setCartItems={setCart} />
         </Route>
         <Route path='*'>
           <PageNotFound />

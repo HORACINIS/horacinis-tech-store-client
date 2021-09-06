@@ -90,6 +90,7 @@ const NavigationBar = ({ products }) => {
           scrollButtons="on"
           aria-label="scrollable force tabs example"
         >
+          {/* <Tab label="home" component={Link} to={'/'} {...a11yProps(-1)} />  ** THIS COULD BE A HOME ICON ** */}
           {products.map((product, index) => (
             <Tab key={index} label={product} component={Link} to={`/products/${product}`} {...a11yProps({ value })} />
           ))}

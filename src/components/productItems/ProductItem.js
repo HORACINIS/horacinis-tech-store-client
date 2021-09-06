@@ -36,8 +36,6 @@ const ProductItem = ({ product, addToCartFunc }) => {
           >Add to Cart
           </Button>
         </Paper>
-
-
       </Grid>
     </Paper>
   )

@@ -41,7 +41,6 @@ const ProductItemsList = ({ product, addToCartFunc }) => {
 
   return (
     <div>
-      <h1>{product}</h1>
       <p><Link to='/'>Home</Link></p>
       <Grid container justifyContent="center" spacing={2}>
         {productItems && productItems.map(product => (

@@ -37,7 +37,7 @@ const App = () => {
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart, singleItemProduct]);
+  }, [cart]);
 
 
   return (
@@ -57,8 +57,8 @@ const App = () => {
 
         {PRODUCTSCATEGORY.map((productCategory, index) => (
           <Route key={index} exact path={`/products/${productCategory}/:id`}>
-            {console.log(`/products/${productCategory}/:_id`)}
-            <SingleItemDisplay singleItemProduct={singleItemProduct} />
+            {/* {console.log(`/products/${productCategory}/:id`)} */}
+            <SingleItemDisplay addToCartFunc={handleAddToCart} singleItemProduct={singleItemProduct} />
           </Route>
         ))}
 

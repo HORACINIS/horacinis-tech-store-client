@@ -6,19 +6,19 @@ import Grid from '@material-ui/core/Grid';
 const ProductItemsList = ({ product, addToCartFunc, getSingleProductFunc }) => {
 
 
-  let URL;
+  let PRODUCTS_URL;
 
   switch (process.env.REACT_APP_NODE_ENV) {
     case 'development':
-      URL = `/api/v1/products/${product}`;
-      console.log(URL); // NEEDS TO BE DELETED
+      PRODUCTS_URL = `/api/v1/products/${product}`;
+      console.log(PRODUCTS_URL); // NEEDS TO BE DELETED
       break;
     case 'production':
-      URL = `https://horacinis-tech-store.herokuapp.com/api/v1/products/${product}`;
-      console.log(URL); // NEEDS TO BE DELETED
+      PRODUCTS_URL = `https://horacinis-tech-store.herokuapp.com/api/v1/products/${product}`;
+      console.log(PRODUCTS_URL); // NEEDS TO BE DELETED
       break;
     default:
-      URL = '';
+      PRODUCTS_URL = '';
       break;
   }
 
@@ -27,7 +27,7 @@ const ProductItemsList = ({ product, addToCartFunc, getSingleProductFunc }) => {
 
   const fetchItems = async () => {
     try {
-      const response = await fetch(URL);
+      const response = await fetch(PRODUCTS_URL);
       const data = await response.json();
       setFetchedProductItems(data.data[`${product}`]);
     } catch (err) {

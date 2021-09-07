@@ -12,8 +12,42 @@ const PRODUCTSCATEGORY = ['phones', 'laptops']; // ADD ANY PRODUCTS ADDED TO THE
 
 console.log(`Client is running in ${process.env.REACT_APP_NODE_ENV.toUpperCase()} mode!`);
 
+let PRODUCTS_URL;
+
+switch (process.env.REACT_APP_NODE_ENV) {
+  case 'development':
+    PRODUCTS_URL = `/api/v1/products`;
+    console.log(PRODUCTS_URL); // NEEDS TO BE DELETED
+    break;
+  case 'production':
+    PRODUCTS_URL = `https://horacinis-tech-store.herokuapp.com/api/v1/products`;
+    console.log(PRODUCTS_URL); // NEEDS TO BE DELETED
+    break;
+  default:
+    PRODUCTS_URL = '';
+    break;
+}
+
 
 const App = () => {
+  const [fetchedProductItems, setFetchedProductItems] = useState([]);
+
+  const fetchItems = async (productList) => {
+    try {
+      const response = await fetch(`${PRODUCTS_URL}/${productList}`);
+      const data = await response.json();
+      setFetchedProductItems(data.data[`${productList}`]);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    fetchItems('phones'); // a string from one of the products category  array (top) has to be passed in
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  setTimeout(() => console.log(fetchedProductItems), 3000)
+
   const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]');
   const [cart, setCart] = useState(cartFromLocalStorage);
 

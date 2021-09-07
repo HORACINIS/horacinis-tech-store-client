@@ -34,7 +34,7 @@ const App = () => {
 
   const fetchProductItems = async (productList) => {
     try {
-      setFetchedProductItems([]);
+      // setFetchedProductItems([]);
       const response = await fetch(`${PRODUCTS_URL}/${productList}`);
       const data = await response.json();
       setFetchedProductItems(data.data[`${productList}`]);

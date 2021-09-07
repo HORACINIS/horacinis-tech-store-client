@@ -15,7 +15,7 @@ const ProductItemsList = ({ fetchedProducts, fetchProductsFunc, productCategory,
       <Grid container justifyContent="center" spacing={2}>
         {fetchedProducts && fetchedProducts.map(product => (
           <Grid item display='flex' key={product._id} xs={6} sm={4} lg={3}>
-            <ProductItem product={product} getSingleProductFunc={getSingleProductFunc} addToCartFunc={addToCartFunc} />
+            <ProductItem product={product} addToCartFunc={addToCartFunc} />
           </Grid>
         ))}
       </Grid>

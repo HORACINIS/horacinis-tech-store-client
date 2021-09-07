@@ -59,15 +59,9 @@ const App = () => {
     setCart(newCart);
   }
 
-  const [singleItemProduct, setSingleItemProduct] = useState({});
-  const productToRenderInSingleView = (product) => {
-    setSingleItemProduct(product);
-  }
-
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
-
 
   return (
     <React.Fragment>
@@ -81,7 +75,7 @@ const App = () => {
         {PRODUCTSCATEGORY.map((product, index) => (
           // product here refers to 'phones' or 'laptops', etc (from the category array at the top)
           <Route exact path={`/products/${product}`} key={index}>
-            <ProductItemsList fetchedProducts={fetchedProductItems} productCategory={product} fetchProductsFunc={fetchProductItems} getSingleProductFunc={productToRenderInSingleView} addToCartFunc={handleAddToCart} />
+            <ProductItemsList fetchedProducts={fetchedProductItems} productCategory={product} fetchProductsFunc={fetchProductItems} addToCartFunc={handleAddToCart} />
           </Route>
           // <Route key={index} exact path={`/products/${product}`} render={(props) => <ProductItemsList {...props} product={product} />} />
         ))}
@@ -89,9 +83,12 @@ const App = () => {
         {PRODUCTSCATEGORY.map((productCategory, index) => (
           <Route key={index} exact path={`/products/${productCategory}/:id`}>
             {/* {console.log(`/products/${productCategory}/:id`)} */}
-            <SingleItemDisplay addToCartFunc={handleAddToCart} singleItemProduct={singleItemProduct} />
+            <SingleItemDisplay fetchProductItems={fetchProductItems} productCategory={productCategory} fetchedProductsList={fetchedProductItems} addToCartFunc={handleAddToCart} />
           </Route>
         ))}
+
+
+
 
         <Route exact path='/cart'>
           <ShoppingCart cartItems={cart} setCartItems={setCart} />

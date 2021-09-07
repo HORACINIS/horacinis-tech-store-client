@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductItem = ({ product, addToCartFunc, getSingleProductFunc }) => {
+const ProductItem = ({ product, addToCartFunc }) => {
   const classes = useStyles();
 
   const { _id, image, name, numReviews, price, category, rating } = product;
@@ -37,7 +37,6 @@ const ProductItem = ({ product, addToCartFunc, getSingleProductFunc }) => {
           >Add to Cart
           </Button>
           <Button component={Link} to={`/products/${category}/${_id}`}
-            onClick={() => getSingleProductFunc(product)}
           >
             Show
           </Button>

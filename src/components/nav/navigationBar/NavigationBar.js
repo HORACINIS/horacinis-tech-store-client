@@ -49,24 +49,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NavigationBar = ({ products }) => {
+const NavigationBar = ({ productsCategories, fetchProductsFunc }) => {
   const classes = useStyles();
   const history = useHistory();
   const [value, setValue] = useState(false);
 
   const handleChange = (event, newValue) => {
-    // if (history.location.pathname === '/') {
-    //   console.log(history.location.pathname)
-    //   setValue(false)
-    // } else {
-    //   setValue(newValue)
-    // }
+    // console.log(productsCategories)
+    // console.log(event.target.textContent)
+    // console.log(value)
     setValue(newValue)
   };
 
   useEffect(() => {
     if (history.location.pathname !== '/') {
-      products.forEach((product, index) => {
+      productsCategories.forEach((product, index) => {
         if (history.location.pathname === `/products/${product}`) {
           setValue(index);
         }
@@ -76,7 +73,7 @@ const NavigationBar = ({ products }) => {
       // console.log('HOME PAGE HISTORY', history.location.pathname)
       setValue(false);
     }
-  }, [value, history.location.pathname, products])
+  }, [value, history.location.pathname, productsCategories])
 
   return (
     <div className={classes.root}>
@@ -91,7 +88,7 @@ const NavigationBar = ({ products }) => {
           aria-label="scrollable force tabs example"
         >
           {/* <Tab label="home" component={Link} to={'/'} {...a11yProps(-1)} />  ** THIS COULD BE A HOME ICON ** */}
-          {products.map((product, index) => (
+          {productsCategories.map((product, index) => (
             <Tab key={index} label={product} component={Link} to={`/products/${product}`} {...a11yProps({ value })} />
           ))}
           <Tab label="test" component={Link} to={'/products/test2'} {...a11yProps(2)} />

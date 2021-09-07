@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ReviewsComponent from './ReviewsComponent';
@@ -15,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductItem = ({ product, addToCartFunc }) => {
+const ProductItem = ({ product, addToCartFunc, getSingleProductFunc }) => {
   const classes = useStyles();
 
-  const { image, name, numReviews, price, rating } = product;
+  const { _id, image, name, numReviews, price, category, rating } = product;
   return (
 
     <Paper className={classes.control} >
@@ -34,6 +35,11 @@ const ProductItem = ({ product, addToCartFunc }) => {
           <Button color='primary' variant='text'
             onClick={() => addToCartFunc(product)}
           >Add to Cart
+          </Button>
+          <Button component={Link} to={`/products/${category}/${_id}`}
+            onClick={() => getSingleProductFunc(product)}
+          >
+            Show
           </Button>
         </Paper>
       </Grid>

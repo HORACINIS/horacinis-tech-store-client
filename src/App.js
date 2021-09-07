@@ -5,14 +5,44 @@ import ShoppingCart from './components/cart/ShoppingCart';
 import NavigationBar from './components/nav/navigationBar/NavigationBar';
 import HeroCover from './components/heroCover/HeroCover';
 import ProductItemsList from './components/productItems/ProductItemsList';
+import SingleItemDisplay from './components/productItems/singleItem/SingleItemView';
 import PageNotFound from './components/pageNotFound/PageNotFound';
 
-const PRODUCTS = ['phones', 'laptops']; // ADD ANY PRODUCTS ADDED TO THE MONGO DATABASE HERE
+const PRODUCTSCATEGORY = ['phones', 'laptops']; // ADD ANY PRODUCTS ADDED TO THE MONGO DATABASE HERE
 
 console.log(`Client is running in ${process.env.REACT_APP_NODE_ENV.toUpperCase()} mode!`);
 
+let PRODUCTS_URL;
+
+switch (process.env.REACT_APP_NODE_ENV) {
+  case 'development':
+    PRODUCTS_URL = `/api/v1/products`;
+    console.log(PRODUCTS_URL); // NEEDS TO BE DELETED
+    break;
+  case 'production':
+    PRODUCTS_URL = `https://horacinis-tech-store.herokuapp.com/api/v1/products`;
+    console.log(PRODUCTS_URL); // NEEDS TO BE DELETED
+    break;
+  default:
+    PRODUCTS_URL = '';
+    break;
+}
+
 
 const App = () => {
+  const [fetchedProductItems, setFetchedProductItems] = useState([]);
+
+  const fetchProductItems = async (productList) => {
+    try {
+      setFetchedProductItems([]);
+      const response = await fetch(`${PRODUCTS_URL}/${productList}`);
+      const data = await response.json();
+      setFetchedProductItems(data.data[`${productList}`]);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]');
   const [cart, setCart] = useState(cartFromLocalStorage);
 
@@ -29,6 +59,11 @@ const App = () => {
     setCart(newCart);
   }
 
+  const [singleItemProduct, setSingleItemProduct] = useState({});
+  const productToRenderInSingleView = (product) => {
+    setSingleItemProduct(product);
+  }
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
@@ -37,17 +72,27 @@ const App = () => {
   return (
     <React.Fragment>
       <TopBar cartItems={cart} />
-      <NavigationBar products={PRODUCTS} />
+      <NavigationBar productsCategories={PRODUCTSCATEGORY} fetchProductsFunc={fetchProductItems} />
       <Switch>
         <Route exact path='/'>
           <HeroCover />
         </Route>
-        {PRODUCTS.map((product, index) => (
+
+        {PRODUCTSCATEGORY.map((product, index) => (
+          // product here refers to 'phones' or 'laptops', etc (from the category array at the top)
           <Route exact path={`/products/${product}`} key={index}>
-            <ProductItemsList product={product} addToCartFunc={handleAddToCart} />
+            <ProductItemsList fetchedProducts={fetchedProductItems} productCategory={product} fetchProductsFunc={fetchProductItems} getSingleProductFunc={productToRenderInSingleView} addToCartFunc={handleAddToCart} />
           </Route>
           // <Route key={index} exact path={`/products/${product}`} render={(props) => <ProductItemsList {...props} product={product} />} />
         ))}
+
+        {PRODUCTSCATEGORY.map((productCategory, index) => (
+          <Route key={index} exact path={`/products/${productCategory}/:id`}>
+            {/* {console.log(`/products/${productCategory}/:id`)} */}
+            <SingleItemDisplay addToCartFunc={handleAddToCart} singleItemProduct={singleItemProduct} />
+          </Route>
+        ))}
+
         <Route exact path='/cart'>
           <ShoppingCart cartItems={cart} setCartItems={setCart} />
         </Route>

@@ -32,7 +32,7 @@ switch (process.env.REACT_APP_NODE_ENV) {
 const App = () => {
   const [fetchedProductItems, setFetchedProductItems] = useState([]);
 
-  const fetchItems = async (productList) => {
+  const fetchProductItems = async (productList) => {
     try {
       const response = await fetch(`${PRODUCTS_URL}/${productList}`);
       const data = await response.json();
@@ -43,7 +43,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    fetchItems('phones'); // a string from one of the products category  array (top) has to be passed in
+    fetchProductItems('phones'); // a string from one of the products category  array (top) has to be passed in
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   setTimeout(() => console.log(fetchedProductItems), 3000)
@@ -77,17 +77,27 @@ const App = () => {
   return (
     <React.Fragment>
       <TopBar cartItems={cart} />
-      <NavigationBar products={PRODUCTSCATEGORY} />
+      <NavigationBar productsCategories={PRODUCTSCATEGORY} fetchProductsFunc={fetchProductItems} />
       <Switch>
         <Route exact path='/'>
           <HeroCover />
         </Route>
+
+
+
+
         {PRODUCTSCATEGORY.map((product, index) => (
+          // product here refers to 'phones' or 'laptops', etc (from the category array at the top)
           <Route exact path={`/products/${product}`} key={index}>
-            <ProductItemsList product={product} getSingleProductFunc={productToRenderInSingleView} addToCartFunc={handleAddToCart} />
+            <ProductItemsList fetchedProducts={fetchedProductItems} getSingleProductFunc={productToRenderInSingleView} addToCartFunc={handleAddToCart} />
           </Route>
           // <Route key={index} exact path={`/products/${product}`} render={(props) => <ProductItemsList {...props} product={product} />} />
         ))}
+
+
+
+
+
 
         {PRODUCTSCATEGORY.map((productCategory, index) => (
           <Route key={index} exact path={`/products/${productCategory}/:id`}>

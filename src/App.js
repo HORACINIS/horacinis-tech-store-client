@@ -30,9 +30,14 @@ const App = () => {
     setCart(newCart);
   }
 
+  const [singleItemProduct, setSingleItemProduct] = useState({});
+  const productToRenderInSingleView = (product) => {
+    setSingleItemProduct(product);
+  }
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
+  }, [cart, singleItemProduct]);
 
 
   return (
@@ -45,15 +50,15 @@ const App = () => {
         </Route>
         {PRODUCTSCATEGORY.map((product, index) => (
           <Route exact path={`/products/${product}`} key={index}>
-            <ProductItemsList product={product} addToCartFunc={handleAddToCart} />
+            <ProductItemsList product={product} getSingleProductFunc={productToRenderInSingleView} addToCartFunc={handleAddToCart} />
           </Route>
           // <Route key={index} exact path={`/products/${product}`} render={(props) => <ProductItemsList {...props} product={product} />} />
         ))}
 
         {PRODUCTSCATEGORY.map((productCategory, index) => (
-          <Route key={index} exact path={`/products/${productCategory}/:_id`}>
+          <Route key={index} exact path={`/products/${productCategory}/:id`}>
             {console.log(`/products/${productCategory}/:_id`)}
-            <SingleItemDisplay productCategory={productCategory} />
+            <SingleItemDisplay singleItemProduct={singleItemProduct} />
           </Route>
         ))}
 

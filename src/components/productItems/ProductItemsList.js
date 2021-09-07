@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import ProductItem from './ProductItem';
 import Grid from '@material-ui/core/Grid';
 
-const ProductItemsList = ({ product, addToCartFunc }) => {
+const ProductItemsList = ({ product, addToCartFunc, getSingleProductFunc }) => {
 
 
   let URL;
@@ -23,13 +23,13 @@ const ProductItemsList = ({ product, addToCartFunc }) => {
   }
 
 
-  const [productItems, setProductItems] = useState([]);
+  const [fetchedProductItems, setFetchedProductItems] = useState([]);
 
   const fetchItems = async () => {
     try {
       const response = await fetch(URL);
       const data = await response.json();
-      setProductItems(data.data[`${product}`]);
+      setFetchedProductItems(data.data[`${product}`]);
     } catch (err) {
       console.log(err);
     }
@@ -43,9 +43,9 @@ const ProductItemsList = ({ product, addToCartFunc }) => {
     <div>
       <p><Link to='/'>Home</Link></p>
       <Grid container justifyContent="center" spacing={2}>
-        {productItems && productItems.map(product => (
+        {fetchedProductItems && fetchedProductItems.map(product => (
           <Grid item display='flex' key={product._id} xs={6} sm={4} lg={3}>
-            <ProductItem product={product} addToCartFunc={addToCartFunc} />
+            <ProductItem product={product} getSingleProductFunc={getSingleProductFunc} addToCartFunc={addToCartFunc} />
           </Grid>
         ))}
       </Grid>

@@ -8,7 +8,7 @@ import ProductItemsList from './components/productItems/ProductItemsList';
 import SingleItemDisplay from './components/productItems/singleItem/SingleItemView';
 import PageNotFound from './components/pageNotFound/PageNotFound';
 
-const PRODUCTS = ['phones', 'laptops']; // ADD ANY PRODUCTS ADDED TO THE MONGO DATABASE HERE
+const PRODUCTSCATEGORY = ['phones', 'laptops']; // ADD ANY PRODUCTS ADDED TO THE MONGO DATABASE HERE
 
 console.log(`Client is running in ${process.env.REACT_APP_NODE_ENV.toUpperCase()} mode!`);
 
@@ -38,22 +38,22 @@ const App = () => {
   return (
     <React.Fragment>
       <TopBar cartItems={cart} />
-      <NavigationBar products={PRODUCTS} />
+      <NavigationBar products={PRODUCTSCATEGORY} />
       <Switch>
         <Route exact path='/'>
           <HeroCover />
         </Route>
-        {PRODUCTS.map((product, index) => (
+        {PRODUCTSCATEGORY.map((product, index) => (
           <Route exact path={`/products/${product}`} key={index}>
             <ProductItemsList product={product} addToCartFunc={handleAddToCart} />
           </Route>
           // <Route key={index} exact path={`/products/${product}`} render={(props) => <ProductItemsList {...props} product={product} />} />
         ))}
 
-        {PRODUCTS.map((product, index) => (
-          <Route key={index} exact path={`/products/${product}/:_id`}>
-            {console.log(`/products/${product}/:_id`)}
-            <SingleItemDisplay product={product} />
+        {PRODUCTSCATEGORY.map((productCategory, index) => (
+          <Route key={index} exact path={`/products/${productCategory}/:_id`}>
+            {console.log(`/products/${productCategory}/:_id`)}
+            <SingleItemDisplay productCategory={productCategory} />
           </Route>
         ))}
 

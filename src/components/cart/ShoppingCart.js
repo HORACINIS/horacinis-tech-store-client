@@ -41,13 +41,14 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
             <Button variant='outlined' color='secondary' onClick={() => handleRemoveSingleProduct(product)}>
               Remove
             </Button>
+            <hr />
           </li>
         ))}
       </ul>
       {cartItems.length > 0 ?
         (<div>
           <h3>Total: ${getTotalPrice()}</h3>
-          <Button variant='contained' color='secondary' onClick={handleClearCart}>CLEAR CART</Button>
+          <Button style={{marginBottom:'20px'}} variant='contained' color='secondary' onClick={handleClearCart}>CLEAR CART</Button>
         </div>
         )
         :

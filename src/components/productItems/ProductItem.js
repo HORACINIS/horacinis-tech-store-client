@@ -32,11 +32,11 @@ const ProductItem = ({ product, addToCartFunc }) => {
       <Grid container>
         <Paper>
           <span>${price}</span>
-          <Button color='primary' variant='text'
+          <Button color='secondary' variant='text'
             onClick={() => addToCartFunc(product)}
           >Add to Cart
           </Button>
-          <Button component={Link} to={`/products/${category}/${_id}`}
+          <Button component={Link} color='primary' to={`/products/${category}/${_id}`}
           >
             Show
           </Button>

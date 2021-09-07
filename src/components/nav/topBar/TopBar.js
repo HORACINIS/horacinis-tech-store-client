@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Press Start 2P, cursive',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
-    }
+    },
   },
   // search: {
   //   position: 'relative',
@@ -184,7 +184,7 @@ export default function PrimarySearchAppBar({ cartItems }) {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ background: 'darkblue' }}>
         <Toolbar>
           <IconButton
           // edge="start"
@@ -193,7 +193,7 @@ export default function PrimarySearchAppBar({ cartItems }) {
           // aria-label="open drawer"
           >
             {/* <MenuIcon /> */}
-            <Typography className={classes.titleInitials} variant="h6" noWrap>
+            <Typography className={classes.titleInitials} variant="h6" noWrap color='secondary'>
               H T S
             </Typography>
           </IconButton>
@@ -215,7 +215,7 @@ export default function PrimarySearchAppBar({ cartItems }) {
             />
           </div> */}
           <div className={classes.grow} />
-          <IconButton aria-label="show 4 new mails" color="inherit" component={Link} to='/cart'>
+          <IconButton aria-label="show all products quantity in cart" color="inherit" component={Link} to='/cart'>
             <Badge badgeContent={getProductsQuantity()} color="secondary">
               <CartIcon />
             </Badge>

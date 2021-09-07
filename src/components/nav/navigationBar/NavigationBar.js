@@ -58,7 +58,6 @@ const NavigationBar = ({ productsCategories, fetchProductsFunc }) => {
     // console.log(productsCategories)
     // console.log(event.target.textContent)
     // console.log(value)
-    fetchProductsFunc(event.target.textContent)
     setValue(newValue)
   };
 

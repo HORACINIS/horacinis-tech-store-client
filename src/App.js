@@ -34,6 +34,7 @@ const App = () => {
 
   const fetchProductItems = async (productList) => {
     try {
+      setFetchedProductItems([]);
       const response = await fetch(`${PRODUCTS_URL}/${productList}`);
       const data = await response.json();
       setFetchedProductItems(data.data[`${productList}`]);
@@ -41,12 +42,6 @@ const App = () => {
       console.log(err);
     }
   }
-
-  useEffect(() => {
-    fetchProductItems('phones'); // a string from one of the products category  array (top) has to be passed in
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  setTimeout(() => console.log(fetchedProductItems), 3000)
 
   const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]');
   const [cart, setCart] = useState(cartFromLocalStorage);
@@ -83,21 +78,13 @@ const App = () => {
           <HeroCover />
         </Route>
 
-
-
-
         {PRODUCTSCATEGORY.map((product, index) => (
           // product here refers to 'phones' or 'laptops', etc (from the category array at the top)
           <Route exact path={`/products/${product}`} key={index}>
-            <ProductItemsList fetchedProducts={fetchedProductItems} getSingleProductFunc={productToRenderInSingleView} addToCartFunc={handleAddToCart} />
+            <ProductItemsList fetchedProducts={fetchedProductItems} productCategory={product} fetchProductsFunc={fetchProductItems} getSingleProductFunc={productToRenderInSingleView} addToCartFunc={handleAddToCart} />
           </Route>
           // <Route key={index} exact path={`/products/${product}`} render={(props) => <ProductItemsList {...props} product={product} />} />
         ))}
-
-
-
-
-
 
         {PRODUCTSCATEGORY.map((productCategory, index) => (
           <Route key={index} exact path={`/products/${productCategory}/:id`}>
@@ -105,7 +92,6 @@ const App = () => {
             <SingleItemDisplay addToCartFunc={handleAddToCart} singleItemProduct={singleItemProduct} />
           </Route>
         ))}
-
 
         <Route exact path='/cart'>
           <ShoppingCart cartItems={cart} setCartItems={setCart} />

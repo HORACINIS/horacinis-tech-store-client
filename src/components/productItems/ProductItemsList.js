@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProductItem from './ProductItem';
 import Grid from '@material-ui/core/Grid';
 
-const ProductItemsList = ({ fetchedProducts, addToCartFunc, getSingleProductFunc }) => {
+const ProductItemsList = ({ fetchedProducts, fetchProductsFunc, productCategory, addToCartFunc, getSingleProductFunc }) => {
+
+  useEffect(() => {
+    fetchProductsFunc(productCategory)
+  }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>

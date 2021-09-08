@@ -4,7 +4,7 @@ import ProductItem from './ProductItem';
 import LoadingProducts from './../loading/LoadingProducts';
 import Grid from '@material-ui/core/Grid';
 
-const ProductItemsList = ({ fetchedProducts, fetchProductsFunc, productCategory, addToCartFunc, getSingleProductFunc }) => {
+const ProductItemsList = ({ fetchedProducts, fetchProductsFunc, productCategory, addToCartFunc }) => {
   // const [loading, setLoading] = useState(true);
 
   useEffect(() => {

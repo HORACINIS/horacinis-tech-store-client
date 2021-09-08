@@ -35,9 +35,22 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
             <p>{product.name}</p>
             <p><img width='100px' src={product.image} alt='phone' /></p>
             <p>
-              Quantity: <Button>-</Button>
-              <input type='number' required min='1' max='10' onChange={(e) => increaseDecreaseQuantity(e.target.value, product)} value={product.quantity} />
-              <Button>+</Button>
+              Quantity: <Button color='secondary'
+                onClick={() => {
+                  const input = document.querySelector('#item-quantity')
+                  let inputValue = parseInt(input.value);
+                  inputValue = inputValue - 1;
+                  increaseDecreaseQuantity(inputValue, product)
+                }}
+              >-</Button>
+              <input id='item-quantity' type='number' readOnly min='1' max='10' value={product.quantity} />
+              <Button color='secondary'
+                onClick={() => {
+                  const input = document.querySelector('#item-quantity')
+                  let inputValue = parseInt(input.value);
+                  inputValue = inputValue + 1;
+                  increaseDecreaseQuantity(inputValue, product)
+                }}>+</Button>
             </p>
             <p>Description: {product.description}</p>
             <p>${product.price}</p>

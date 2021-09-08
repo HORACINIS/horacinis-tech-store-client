@@ -10,8 +10,6 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
 
   const increaseDecreaseQuantity = (quantity, productItem) => {
     let newCart = [...cartItems];
-    // if (parseInt(quantity) > 10) quantity = 10;
-    // newCart.find(product => product._id === productItem._id).quantity = parseInt(quantity) || 1;
     newCart.find(product => product._id === productItem._id).quantity = parseInt(quantity) || '';
     setCartItems(newCart)
   }
@@ -32,7 +30,7 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
       <ul>
         {cartItems.map(product => (
           <li key={product._id}>
-            <p>{product.name}</p>
+            <h3><b>{product.name}</b></h3>
             <p><img width='100px' src={product.image} alt='phone' /></p>
             <p>
               Quantity: <Button color='secondary'
@@ -40,6 +38,11 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
                   const input = document.querySelector('#item-quantity')
                   let inputValue = parseInt(input.value);
                   inputValue = inputValue - 1;
+                  if (inputValue <= 0 || isNaN(inputValue)) {
+                    inputValue = 1;
+                  } else {
+                    inputValue = inputValue - 1;
+                  }
                   increaseDecreaseQuantity(inputValue, product)
                 }}
               >-</Button>
@@ -49,6 +52,7 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
                   const input = document.querySelector('#item-quantity')
                   let inputValue = parseInt(input.value);
                   inputValue = inputValue + 1;
+                  if (inputValue >= 10) inputValue = 10;
                   increaseDecreaseQuantity(inputValue, product)
                 }}>+</Button>
             </p>

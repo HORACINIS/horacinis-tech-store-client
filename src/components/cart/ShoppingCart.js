@@ -76,7 +76,7 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
         </div>
         )
       }
-      <img src={underConstruction} alt='building' />
+      <img width='100%' src={underConstruction} alt='building' />
     </div>
   )
 }

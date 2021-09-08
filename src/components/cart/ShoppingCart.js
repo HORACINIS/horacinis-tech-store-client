@@ -40,8 +40,6 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
                   inputValue = inputValue - 1;
                   if (inputValue <= 0 || isNaN(inputValue)) {
                     inputValue = 1;
-                  } else {
-                    inputValue = inputValue - 1;
                   }
                   increaseDecreaseQuantity(inputValue, product)
                 }}

@@ -10,9 +10,9 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
 
   const increaseDecreaseQuantity = (quantity, productItem) => {
     let newCart = [...cartItems];
-    if (parseInt(quantity) > 10) quantity = 10;
-    newCart.find(product => product._id === productItem._id).quantity = parseInt(quantity) || 1;
-
+    // if (parseInt(quantity) > 10) quantity = 10;
+    // newCart.find(product => product._id === productItem._id).quantity = parseInt(quantity) || 1;
+    newCart.find(product => product._id === productItem._id).quantity = parseInt(quantity) || '';
     setCartItems(newCart)
   }
 
@@ -35,7 +35,9 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
             <p>{product.name}</p>
             <p><img width='100px' src={product.image} alt='phone' /></p>
             <p>
-              Quantity: <input type='number' min='1' max='10' onChange={(e) => increaseDecreaseQuantity(e.target.value, product)} value={product.quantity} />
+              Quantity: <Button>-</Button>
+              <input type='number' required min='1' max='10' onChange={(e) => increaseDecreaseQuantity(e.target.value, product)} value={product.quantity} />
+              <Button>+</Button>
             </p>
             <p>Description: {product.description}</p>
             <p>${product.price}</p>
@@ -49,7 +51,7 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
       {cartItems.length > 0 ?
         (<div>
           <h3>Total: ${getTotalPrice()}</h3>
-          <Button style={{marginBottom:'20px'}} variant='contained' color='secondary' onClick={handleClearCart}>CLEAR CART</Button>
+          <Button style={{ marginBottom: '20px' }} variant='contained' color='secondary' onClick={handleClearCart}>CLEAR CART</Button>
         </div>
         )
         :

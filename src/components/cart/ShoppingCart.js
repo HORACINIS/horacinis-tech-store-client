@@ -10,6 +10,7 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
 
   const increaseDecreaseQuantity = (quantity, productItem) => {
     let newCart = [...cartItems];
+    if (parseInt(quantity) > 10) quantity = 10;
     newCart.find(product => product._id === productItem._id).quantity = parseInt(quantity) || 1;
 
     setCartItems(newCart)

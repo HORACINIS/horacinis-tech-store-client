@@ -10,7 +10,7 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
 
   const increaseDecreaseQuantity = (quantity, productItem) => {
     let newCart = [...cartItems];
-    newCart.find(product => product._id === productItem._id).quantity = parseInt(quantity) || '';
+    newCart.find(product => product._id === productItem._id).quantity = parseInt(quantity);
     setCartItems(newCart)
   }
 
@@ -28,14 +28,14 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
   return (
     <div>
       <ul>
-        {cartItems.map(product => (
+        {cartItems.map((product, index) => (
           <li key={product._id}>
             <h3><b>{product.name}</b></h3>
             <p><img width='100px' src={product.image} alt='phone' /></p>
             <p>
               Quantity: <Button color='secondary'
                 onClick={() => {
-                  const input = document.querySelector('#item-quantity')
+                  const input = document.querySelector(`#item-quantity-input-${index}`)
                   let inputValue = parseInt(input.value);
                   inputValue = inputValue - 1;
                   if (inputValue <= 0 || isNaN(inputValue)) {
@@ -44,10 +44,10 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
                   increaseDecreaseQuantity(inputValue, product)
                 }}
               >-</Button>
-              <input id='item-quantity' type='number' readOnly min='1' max='10' value={product.quantity} />
+              <input id={`item-quantity-input-${index}`} type='number' readOnly min='1' max='10' value={product.quantity} />
               <Button color='secondary'
                 onClick={() => {
-                  const input = document.querySelector('#item-quantity')
+                  const input = document.querySelector(`#item-quantity-input-${index}`)
                   let inputValue = parseInt(input.value);
                   inputValue = inputValue + 1;
                   if (inputValue >= 10) inputValue = 10;

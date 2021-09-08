@@ -5,13 +5,11 @@ import LoadingProducts from './../loading/LoadingProducts';
 import Grid from '@material-ui/core/Grid';
 
 const ProductItemsList = ({ fetchedProducts, fetchProductsFunc, productCategory, addToCartFunc }) => {
-  // const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     fetchProductsFunc(productCategory)
   }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
-  if (fetchedProducts.length === 0) {
+  if (!fetchedProducts.length) {
     return <LoadingProducts />
   } else {
     return (

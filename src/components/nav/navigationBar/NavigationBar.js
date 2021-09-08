@@ -73,7 +73,7 @@ const NavigationBar = ({ productsCategories, fetchProductsFunc }) => {
       // console.log('HOME PAGE HISTORY', history.location.pathname)
       setValue(false);
     }
-  }, [value, history.location.pathname, productsCategories])
+  }, [value, history.location.pathname, productsCategories]);
 
   return (
     <div className={classes.root}>

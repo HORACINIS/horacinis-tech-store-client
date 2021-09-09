@@ -56,32 +56,11 @@ const App = () => {
 
     if (itemInCart) {
       itemInCart.quantity++;
+      
     } else {
       itemInCart = { ...productSelected, quantity: 1 }
       newCart.push(itemInCart);
     }
-
-
-    // setFetchedProductItems((prevState) => [...prevState, { prevState, addedToCart: true }]);
-    // console.log(fetchedProductItems)
-
-
-
-    //     const indexProductSelected = fetchedProductItems.indexOf(productSelected)
-    //     console.log(productSelected)
-    //     console.log(indexProductSelected)
-
-    //     const caca = fetchedProductItems[indexProductSelected] = { ...productSelected, addedToCart: true };
-
-
-
-
-    //     console.log(fetchedProductItems)
-    //     console.log(caca)
-
-
-
-
     setCart(newCart);
   }
 

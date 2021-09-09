@@ -10,6 +10,7 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
   }
 
   const increaseDecreaseQuantity = (quantity, productItem) => {
+    if (quantity <= 0 || isNaN(quantity)) quantity = 1;
     let newCart = [...cartItems];
     newCart.find(product => product._id === productItem._id).quantity = parseInt(quantity);
     setCartItems(newCart)
@@ -40,9 +41,6 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
                   const input = document.querySelector(`#item-quantity-input-${index}`)
                   let inputValue = parseInt(input.value);
                   inputValue = inputValue - 1;
-                  if (inputValue <= 0 || isNaN(inputValue)) {
-                    inputValue = 1;
-                  }
                   increaseDecreaseQuantity(inputValue, product)
                 }}
               >-</Button>
@@ -52,7 +50,6 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
                   const input = document.querySelector(`#item-quantity-input-${index}`)
                   let inputValue = parseInt(input.value);
                   inputValue = inputValue + 1;
-                  if (inputValue >= 10) inputValue = 10;
                   increaseDecreaseQuantity(inputValue, product)
                 }}>+</Button>
             </p>
@@ -78,6 +75,7 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
         </div>
         )
       }
+      <img width='100%' src={underConstruction} alt='building' />
       <img width='100%' src={underConstruction} alt='building' />
     </div>
   )

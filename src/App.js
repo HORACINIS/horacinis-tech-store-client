@@ -9,7 +9,7 @@ import SingleItemDisplay from './components/productItems/singleItem/SingleItemVi
 import PageNotFound from './components/pageNotFound/PageNotFound';
 import ProgressBar from './components/loading/ProgressBar';
 
-const PRODUCTSCATEGORY = ['phones', 'laptops']; // ADD ANY PRODUCTS ADDED TO THE MONGO DATABASE HERE
+const PRODUCTSCATEGORY = ['phones', 'laptops', 'tablets']; // ADD ANY PRODUCTS ADDED TO THE MONGO DATABASE HERE
 
 console.log(`Client is running in ${process.env.REACT_APP_NODE_ENV.toUpperCase()} mode!`);
 

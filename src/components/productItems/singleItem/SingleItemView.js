@@ -6,7 +6,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
 const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCategory, addToCartFunc }) => {
-  const { id } = useParams();
+  const { name } = useParams();
 
   useEffect(() => {
     fetchProductItems(productCategory)
@@ -14,11 +14,11 @@ const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCate
 
   return (
     <div>
-      {fetchedProductsList.filter(product => product._id === id).map((product) => {
+      {fetchedProductsList.filter(product => product.name === name).map((product) => {
         const { _id, name, category, rating, numReviews, image, description, price } = product;
         return (
           <List key={_id}>
-            <Link to={`/products/${category}`}>go back</Link>
+            <Link to={`/products/${category}`}>Back to {category}</Link>
             <ListItem>
               <div>
                 <div><ReviewsComponent rating={rating} />{rating} ({numReviews})</div>

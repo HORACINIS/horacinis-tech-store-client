@@ -60,6 +60,28 @@ const App = () => {
       itemInCart = { ...productSelected, quantity: 1 }
       newCart.push(itemInCart);
     }
+
+
+    // setFetchedProductItems((prevState) => [...prevState, { prevState, addedToCart: true }]);
+    // console.log(fetchedProductItems)
+
+
+
+    //     const indexProductSelected = fetchedProductItems.indexOf(productSelected)
+    //     console.log(productSelected)
+    //     console.log(indexProductSelected)
+
+    //     const caca = fetchedProductItems[indexProductSelected] = { ...productSelected, addedToCart: true };
+
+
+
+
+    //     console.log(fetchedProductItems)
+    //     console.log(caca)
+
+
+
+
     setCart(newCart);
   }
 
@@ -72,7 +94,7 @@ const App = () => {
       <header>
         <TopBar cartItems={cart} />
         <NavigationBar productsCategories={PRODUCTSCATEGORY} fetchProductsFunc={fetchProductItems} />
-        <div height={4}>{progressBar && <ProgressBar />}</div>
+        {progressBar && <ProgressBar />}
       </header>
       <Switch>
         <Route exact path='/'>
@@ -88,7 +110,7 @@ const App = () => {
         ))}
 
         {PRODUCTSCATEGORY.map((productCategory, index) => (
-          <Route key={index} exact path={`/products/${productCategory}/:id`}>
+          <Route key={index} exact path={`/products/${productCategory}/:name`}>
             {/* {console.log(`/products/${productCategory}/:id`)} */}
             <SingleItemDisplay fetchProductItems={fetchProductItems} productCategory={productCategory} fetchedProductsList={fetchedProductItems} addToCartFunc={handleAddToCart} />
           </Route>

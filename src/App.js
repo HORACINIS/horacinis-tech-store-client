@@ -7,7 +7,7 @@ import HeroCover from './components/heroCover/HeroCover';
 import ProductItemsList from './components/productItems/ProductItemsList';
 import SingleItemDisplay from './components/productItems/singleItem/SingleItemView';
 import PageNotFound from './components/pageNotFound/PageNotFound';
-// import ProgressBar from './components/loading/ProgressBar';
+import ProgressBar from './components/loading/ProgressBar';
 
 const PRODUCTSCATEGORY = ['phones', 'laptops']; // ADD ANY PRODUCTS ADDED TO THE MONGO DATABASE HERE
 
@@ -32,7 +32,6 @@ switch (process.env.REACT_APP_NODE_ENV) {
 
 const App = () => {
   const [fetchedProductItems, setFetchedProductItems] = useState([]);
-  // const [loadingBar, setLoadingBar] = useState(true);
 
   const fetchProductItems = async (productList) => {
     try {
@@ -40,7 +39,6 @@ const App = () => {
       const response = await fetch(`${PRODUCTS_URL}/${productList}`);
       const data = await response.json();
       setFetchedProductItems(data.data[`${productList}`]);
-      // setLoadingBar(false);
     } catch (err) {
       console.log(err);
     }
@@ -65,11 +63,14 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
-  
+
   return (
     <React.Fragment>
-      <TopBar cartItems={cart} />
-      <NavigationBar productsCategories={PRODUCTSCATEGORY} fetchProductsFunc={fetchProductItems} />
+      <header>
+        <TopBar cartItems={cart} />
+        <NavigationBar productsCategories={PRODUCTSCATEGORY} fetchProductsFunc={fetchProductItems} />
+        <div height={4}>{!fetchedProductItems.length && <ProgressBar />}</div>
+      </header>
       <Switch>
         <Route exact path='/'>
           <HeroCover />

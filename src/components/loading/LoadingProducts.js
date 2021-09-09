@@ -11,37 +11,37 @@ const LoadingProducts = () => {
 
         <Grid item display='flex' xs={6} sm={4} lg={3}>
           <Grid container>
-            <Skeleton variant='rect' width='100%' height={280} />
+            <Skeleton variant='rect' width='100%' height={272} />
           </Grid>
         </Grid>
 
         <Grid item display='flex' xs={6} sm={4} lg={3}>
           <Grid container>
-            <Skeleton variant='rect' width='100%' height={280} />
+            <Skeleton variant='rect' width='100%' height={272} />
           </Grid>
         </Grid>
 
         <Grid item display='flex' xs={6} sm={4} lg={3}>
           <Grid container>
-            <Skeleton variant='rect' width='100%' height={280} />
+            <Skeleton variant='rect' width='100%' height={272} />
           </Grid>
         </Grid>
 
         <Grid item display='flex' xs={6} sm={4} lg={3}>
           <Grid container>
-            <Skeleton variant='rect' width='100%' height={280} />
+            <Skeleton variant='rect' width='100%' height={272} />
           </Grid>
         </Grid>
 
         <Grid item display='flex' xs={6} sm={4} lg={3}>
           <Grid container>
-            <Skeleton variant='rect' width='100%' height={280} />
+            <Skeleton variant='rect' width='100%' height={272} />
           </Grid>
         </Grid>
 
         <Grid item display='flex' xs={6} sm={4} lg={3}>
           <Grid container>
-            <Skeleton variant='rect' width='100%' height={280} />
+            <Skeleton variant='rect' width='100%' height={272} />
           </Grid>
         </Grid>
 

@@ -32,13 +32,16 @@ switch (process.env.REACT_APP_NODE_ENV) {
 
 const App = () => {
   const [fetchedProductItems, setFetchedProductItems] = useState([]);
+  const [progressBar, setProgressBar] = useState(false);
 
   const fetchProductItems = async (productList) => {
     try {
       // setFetchedProductItems([]);
+      setProgressBar(true);
       const response = await fetch(`${PRODUCTS_URL}/${productList}`);
       const data = await response.json();
       setFetchedProductItems(data.data[`${productList}`]);
+      setProgressBar(false);
     } catch (err) {
       console.log(err);
     }
@@ -69,7 +72,7 @@ const App = () => {
       <header>
         <TopBar cartItems={cart} />
         <NavigationBar productsCategories={PRODUCTSCATEGORY} fetchProductsFunc={fetchProductItems} />
-        <div height={4}>{!fetchedProductItems.length && <ProgressBar />}</div>
+        <div height={4}>{progressBar && <ProgressBar />}</div>
       </header>
       <Switch>
         <Route exact path='/'>

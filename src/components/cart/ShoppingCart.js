@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import underConstruction from './../../assets/under-construction.png';
 
 const ShoppingCart = ({ cartItems, setCartItems }) => {
@@ -27,11 +28,12 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
 
   return (
     <div>
+      <p><Link to='/'>Home</Link></p>
       <ul>
         {cartItems.map((product, index) => (
           <li key={product._id}>
             <h3><b>{product.name}</b></h3>
-            <p><img width='100px' src={product.image} alt='phone' /></p>
+            <p><Link to={`/products/${product.category}/${product.name}`}><img width='100px' src={product.image} alt='phone' /></Link></p>
             <p>
               Quantity: <Button color='secondary'
                 onClick={() => {

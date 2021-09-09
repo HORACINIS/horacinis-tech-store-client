@@ -19,14 +19,16 @@ const useStyles = makeStyles((theme) => ({
 const ProductItem = ({ product, addToCartFunc }) => {
   const classes = useStyles();
 
-  const { _id, image, name, numReviews, price, category, rating } = product;
+  const { image, name, numReviews, price, category, rating } = product;
   return (
+    <Paper className={classes.control}>
 
-    <Paper className={classes.control} >
       <Typography variant='subtitle2' align='left'>{name}</Typography>
       <div><ReviewsComponent rating={rating} />{rating} ({numReviews})</div>
       <div align='center'>
-        <img className={classes.image} src={image} alt='phone' />
+        <Link to={`/products/${category}/${name}`}>
+          <img className={classes.image} src={image} alt='phone' />
+        </Link>
       </div>
 
       <Grid container>
@@ -36,10 +38,12 @@ const ProductItem = ({ product, addToCartFunc }) => {
             onClick={() => addToCartFunc(product)}
           >Add to Cart
           </Button>
-          <Button component={Link} color='primary' to={`/products/${category}/${_id}`}
-          >
-            Show
-          </Button>
+          {/* <Button component={Link} color='primary' to={`/products/${category}/${_id}`}
+          >Show
+          </Button> */}
+
+          {/* TESTING */}
+          {product.addedToCart && <Button>IN CART!</Button>}
         </Paper>
       </Grid>
     </Paper>

@@ -60,28 +60,6 @@ const App = () => {
       itemInCart = { ...productSelected, quantity: 1 }
       newCart.push(itemInCart);
     }
-
-
-    // setFetchedProductItems((prevState) => [...prevState, { prevState, addedToCart: true }]);
-    // console.log(fetchedProductItems)
-
-
-
-    //     const indexProductSelected = fetchedProductItems.indexOf(productSelected)
-    //     console.log(productSelected)
-    //     console.log(indexProductSelected)
-
-    //     const caca = fetchedProductItems[indexProductSelected] = { ...productSelected, addedToCart: true };
-
-
-
-
-    //     console.log(fetchedProductItems)
-    //     console.log(caca)
-
-
-
-
     setCart(newCart);
   }
 
@@ -100,25 +78,19 @@ const App = () => {
         <Route exact path='/'>
           <HeroCover />
         </Route>
-
         {PRODUCTSCATEGORY.map((product, index) => (
           // product here refers to 'phones' or 'laptops', etc (from the category array at the top)
           <Route exact path={`/products/${product}`} key={index}>
-            <ProductItemsList fetchedProducts={fetchedProductItems} productCategory={product} fetchProductsFunc={fetchProductItems} addToCartFunc={handleAddToCart} />
+            <ProductItemsList cart={cart} fetchedProducts={fetchedProductItems} productCategory={product} fetchProductsFunc={fetchProductItems} addToCartFunc={handleAddToCart} />
           </Route>
           // <Route key={index} exact path={`/products/${product}`} render={(props) => <ProductItemsList {...props} product={product} />} />
         ))}
-
         {PRODUCTSCATEGORY.map((productCategory, index) => (
           <Route key={index} exact path={`/products/${productCategory}/:name`}>
             {/* {console.log(`/products/${productCategory}/:id`)} */}
             <SingleItemDisplay fetchProductItems={fetchProductItems} productCategory={productCategory} fetchedProductsList={fetchedProductItems} addToCartFunc={handleAddToCart} />
           </Route>
         ))}
-
-
-
-
         <Route exact path='/cart'>
           <ShoppingCart cartItems={cart} setCartItems={setCart} />
         </Route>

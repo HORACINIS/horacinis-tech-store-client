@@ -4,7 +4,7 @@ import ProductItem from './ProductItem';
 import LoadingProducts from './../loading/LoadingProducts';
 import Grid from '@material-ui/core/Grid';
 
-const ProductItemsList = ({ fetchedProducts, fetchProductsFunc, productCategory, addToCartFunc }) => {
+const ProductItemsList = ({ fetchedProducts, fetchProductsFunc, productCategory, addToCartFunc, cart }) => {
   useEffect(() => {
     fetchProductsFunc(productCategory)
   }, []); //eslint-disable-line react-hooks/exhaustive-deps
@@ -18,7 +18,7 @@ const ProductItemsList = ({ fetchedProducts, fetchProductsFunc, productCategory,
         <Grid container justifyContent="center" spacing={2}>
           {fetchedProducts && fetchedProducts.map(product => (
             <Grid item display='flex' key={product._id} xs={6} sm={4} lg={3}>
-              <ProductItem product={product} addToCartFunc={addToCartFunc} />
+              <ProductItem cart={cart} product={product} addToCartFunc={addToCartFunc} />
             </Grid>
           ))}
         </Grid>

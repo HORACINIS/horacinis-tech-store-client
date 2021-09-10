@@ -54,9 +54,26 @@ const App = () => {
     let newCart = [...cart];
     let itemInCart = newCart.find(product => product._id === productSelected._id);
 
+    const modifiedProductSelected = { ...productSelected, addedToCart: true };
+
+    // console.log(modifiedProductSelected)
+
+    let fetchedProductsThatAreInCart = [];
+    fetchedProductItems.map(prod => {
+      if  (prod._id === modifiedProductSelected._id) {
+        prod = {...prod, addedToCart: true};
+      }
+      fetchedProductsThatAreInCart.push(prod);
+      console.log(prod);
+      return prod;
+    })
+    setFetchedProductItems(fetchedProductsThatAreInCart);
+
+
+
     if (itemInCart) {
       itemInCart.quantity++;
-      
+
     } else {
       itemInCart = { ...productSelected, quantity: 1 }
       newCart.push(itemInCart);

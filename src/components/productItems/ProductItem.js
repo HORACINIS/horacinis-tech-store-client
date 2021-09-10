@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -16,10 +16,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductItem = ({ product, addToCartFunc }) => {
+const ProductItem = ({ product, addToCartFunc, cart }) => {
   const classes = useStyles();
+  const [isProductInCart, setIsProductInCart] = useState(product);
 
-  const { image, name, numReviews, price, category, rating } = product;
+  useEffect(() => {
+    cart.filter(item => {
+      if (item._id === product._id) {
+        setIsProductInCart({ ...product, addedToCart: true })
+      };
+      return product;
+    });
+  }, [cart, product])
+
+  const { image, name, numReviews, price, category, rating } = isProductInCart;
   return (
     <Paper className={classes.control}>
 
@@ -43,7 +53,7 @@ const ProductItem = ({ product, addToCartFunc }) => {
           </Button> */}
 
           {/* TESTING */}
-          {product.addedToCart && <Button>IN CART!</Button>}
+          {isProductInCart.addedToCart && <Button>IN CART!</Button>}
         </Paper>
       </Grid>
     </Paper>

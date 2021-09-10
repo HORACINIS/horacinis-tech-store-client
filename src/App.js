@@ -54,26 +54,8 @@ const App = () => {
     let newCart = [...cart];
     let itemInCart = newCart.find(product => product._id === productSelected._id);
 
-    const modifiedProductSelected = { ...productSelected, addedToCart: true };
-
-    // console.log(modifiedProductSelected)
-
-    let fetchedProductsThatAreInCart = [];
-    fetchedProductItems.map(prod => {
-      if  (prod._id === modifiedProductSelected._id) {
-        prod = {...prod, addedToCart: true};
-      }
-      fetchedProductsThatAreInCart.push(prod);
-      console.log(prod);
-      return prod;
-    })
-    setFetchedProductItems(fetchedProductsThatAreInCart);
-
-
-
     if (itemInCart) {
       itemInCart.quantity++;
-
     } else {
       itemInCart = { ...productSelected, quantity: 1 }
       newCart.push(itemInCart);
@@ -96,25 +78,19 @@ const App = () => {
         <Route exact path='/'>
           <HeroCover />
         </Route>
-
         {PRODUCTSCATEGORY.map((product, index) => (
           // product here refers to 'phones' or 'laptops', etc (from the category array at the top)
           <Route exact path={`/products/${product}`} key={index}>
-            <ProductItemsList fetchedProducts={fetchedProductItems} productCategory={product} fetchProductsFunc={fetchProductItems} addToCartFunc={handleAddToCart} />
+            <ProductItemsList cart={cart} fetchedProducts={fetchedProductItems} productCategory={product} fetchProductsFunc={fetchProductItems} addToCartFunc={handleAddToCart} />
           </Route>
           // <Route key={index} exact path={`/products/${product}`} render={(props) => <ProductItemsList {...props} product={product} />} />
         ))}
-
         {PRODUCTSCATEGORY.map((productCategory, index) => (
           <Route key={index} exact path={`/products/${productCategory}/:name`}>
             {/* {console.log(`/products/${productCategory}/:id`)} */}
             <SingleItemDisplay fetchProductItems={fetchProductItems} productCategory={productCategory} fetchedProductsList={fetchedProductItems} addToCartFunc={handleAddToCart} />
           </Route>
         ))}
-
-
-
-
         <Route exact path='/cart'>
           <ShoppingCart cartItems={cart} setCartItems={setCart} />
         </Route>

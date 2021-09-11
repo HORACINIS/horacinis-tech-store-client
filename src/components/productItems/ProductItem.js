@@ -29,7 +29,7 @@ const ProductItem = ({ product, addToCartFunc, cart }) => {
     });
   }, [cart, product])
 
-  const { image, name, numReviews, price, category, rating } = isProductInCart;
+  const { image, name, numReviews, price, category, rating, addedToCart } = isProductInCart;
   return (
     <Paper className={classes.control}>
 
@@ -44,16 +44,13 @@ const ProductItem = ({ product, addToCartFunc, cart }) => {
       <Grid container>
         <Paper>
           <span>${price}</span>
-          <Button color='secondary' variant='text'
-            onClick={() => addToCartFunc(product)}
-          >Add to Cart
-          </Button>
-          {/* <Button component={Link} color='primary' to={`/products/${category}/${_id}`}
-          >Show
-          </Button> */}
-
-          {/* TESTING */}
-          {isProductInCart.addedToCart && <Button>IN CART!</Button>}
+          {!addedToCart ?
+            (<Button color='secondary' variant='text'
+              onClick={() => addToCartFunc(product)}>Add to Cart
+            </Button>)
+            :
+            (<Button color='secondary' variant='outlined'>Added to Cart</Button>)
+          }
         </Paper>
       </Grid>
     </Paper>

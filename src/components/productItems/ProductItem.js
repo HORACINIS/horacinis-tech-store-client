@@ -5,6 +5,9 @@ import Typography from '@material-ui/core/Typography';
 import ReviewsComponent from './ReviewsComponent';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import AddToShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import AddedToShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -44,13 +47,14 @@ const ProductItem = ({ product, addToCartFunc, cart }) => {
       <Grid container>
         <Paper>
           <span>${price}</span>
+
           {!addedToCart ?
             (<Button color='secondary' variant='text'
-              onClick={() => addToCartFunc(product)}>Add to Cart
+              onClick={() => addToCartFunc(product)}><AddToShoppingCartIcon />
             </Button>)
             :
-            (<Button color='secondary' variant='outlined'
-              onClick={() => addToCartFunc(product)}>Added to Cart
+            (<Button color='secondary' variant='text'
+              onClick={() => addToCartFunc(product)}><AddedToShoppingCartIcon />
             </Button>)
           }
         </Paper>

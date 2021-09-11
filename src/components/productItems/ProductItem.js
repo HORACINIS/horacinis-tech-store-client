@@ -47,16 +47,16 @@ const ProductItem = ({ product, addToCartFunc, cart }) => {
       <Paper>
         <Grid container justifyContent="space-between">
           <Grid item>
-            <Typography >${price}</Typography>
+            <Typography variant='h5'>${price}</Typography>
           </Grid>
           <Grid>
             {!addedToCart ?
               (<Button color='secondary' variant='text'
-                onClick={() => addToCartFunc(product)}><AddToShoppingCartIcon />
+                onClick={() => addToCartFunc(product)}><AddToShoppingCartIcon fontSize='medium' />
               </Button>)
               :
               (<Button color='secondary' variant='text'
-                onClick={() => addToCartFunc(product)}><AddedToShoppingCartIcon />
+                onClick={() => addToCartFunc(product)}><AddedToShoppingCartIcon fontSize='medium' />
               </Button>)
             }
           </Grid>

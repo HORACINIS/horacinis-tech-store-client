@@ -35,12 +35,14 @@ const ProductItem = ({ product, addToCartFunc, cart }) => {
   const { image, name, numReviews, price, category, rating, addedToCart } = isProductInCart;
   return (
     <Paper className={classes.control}>
-
       <Typography variant='subtitle2' align='left'>{name}</Typography>
-      <div><ReviewsComponent rating={rating} />{rating} ({numReviews})</div>
+      <Grid container>
+        <ReviewsComponent rating={rating} />{rating} ({numReviews})
+      </Grid>
+
       <div align='center'>
         <Link to={`/products/${category}/${name}`}>
-          <img className={classes.image} src={image} alt='phone' />
+          <img className={classes.image} src={image} alt={name} />
         </Link>
       </div>
 

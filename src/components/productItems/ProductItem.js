@@ -49,11 +49,11 @@ const ProductItem = ({ product, addToCartFunc, cart }) => {
           <span>${price}</span>
 
           {!addedToCart ?
-            (<Button fontSize='small' color='secondary' variant='text'
+            (<Button color='secondary' variant='text'
               onClick={() => addToCartFunc(product)}><AddToShoppingCartIcon />
             </Button>)
             :
-            (<Button color='secondary' variant='outlined'
+            (<Button color='secondary' variant='text'
               onClick={() => addToCartFunc(product)}><AddedToShoppingCartIcon />
             </Button>)
           }

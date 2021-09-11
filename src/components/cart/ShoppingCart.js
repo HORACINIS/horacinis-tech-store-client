@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import PlusIcon from '@material-ui/icons/Add';
+import LessIcon from '@material-ui/icons/Remove';
 import underConstruction from './../../assets/under-construction.png';
 
 const ShoppingCart = ({ cartItems, setCartItems }) => {
@@ -43,7 +45,9 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
                   inputValue = inputValue - 1;
                   increaseDecreaseQuantity(inputValue, product)
                 }}
-              >-</Button>
+              >
+                <LessIcon />
+              </Button>
               <input id={`item-quantity-input-${index}`} type='number' readOnly min='1' max='10' value={product.quantity} />
               <Button color='secondary'
                 onClick={() => {
@@ -51,7 +55,9 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
                   let inputValue = parseInt(input.value);
                   inputValue = inputValue + 1;
                   increaseDecreaseQuantity(inputValue, product)
-                }}>+</Button>
+                }}>
+                <PlusIcon />
+              </Button>
             </p>
             <p>Description: {product.description}</p>
             <p>${product.price}</p>

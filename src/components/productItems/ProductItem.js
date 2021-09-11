@@ -44,21 +44,24 @@ const ProductItem = ({ product, addToCartFunc, cart }) => {
         </Link>
       </div>
 
-      <Grid container>
-        <Paper>
-          <span>${price}</span>
-
-          {!addedToCart ?
-            (<Button color='secondary' variant='text'
-              onClick={() => addToCartFunc(product)}><AddToShoppingCartIcon />
-            </Button>)
-            :
-            (<Button color='secondary' variant='text'
-              onClick={() => addToCartFunc(product)}><AddedToShoppingCartIcon />
-            </Button>)
-          }
-        </Paper>
-      </Grid>
+      <Paper>
+        <Grid container justifyContent="space-between">
+          <Grid item>
+            <Typography >${price}</Typography>
+          </Grid>
+          <Grid>
+            {!addedToCart ?
+              (<Button color='secondary' variant='text'
+                onClick={() => addToCartFunc(product)}><AddToShoppingCartIcon />
+              </Button>)
+              :
+              (<Button color='secondary' variant='text'
+                onClick={() => addToCartFunc(product)}><AddedToShoppingCartIcon />
+              </Button>)
+            }
+          </Grid>
+        </Grid>
+      </Paper>
     </Paper>
   )
 }

@@ -49,7 +49,9 @@ const ProductItem = ({ product, addToCartFunc, cart }) => {
               onClick={() => addToCartFunc(product)}>Add to Cart
             </Button>)
             :
-            (<Button color='secondary' variant='outlined'>Added to Cart</Button>)
+            (<Button color='secondary' variant='outlined'
+              onClick={() => addToCartFunc(product)}>Added to Cart
+            </Button>)
           }
         </Paper>
       </Grid>

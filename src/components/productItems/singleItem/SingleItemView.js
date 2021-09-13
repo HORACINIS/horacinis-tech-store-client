@@ -25,7 +25,7 @@ const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCate
                 <h2>{name}</h2>
                 <p>SKU: {_id}</p>
                 <p><img src={image} alt='product' width='300px' /></p>
-                <p>Description: {description}</p>
+                <p>{description}</p>
                 <h3>${price}.00</h3>
                 <Button color='secondary' variant='outlined'
                   onClick={() => addToCartFunc(product)}

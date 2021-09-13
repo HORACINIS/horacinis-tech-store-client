@@ -35,7 +35,7 @@ const ProductItem = ({ product, addToCartFunc, cart }) => {
   const { image, name, numReviews, price, category, rating, addedToCart } = isProductInCart;
   return (
     <Paper className={classes.control}>
-      <Typography variant='subtitle2' align='left' style={{ minHeight: '62px' }}>{name}</Typography>
+      <Typography variant='subtitle2' align='left' style={{ minHeight: '63px' }}>{name}</Typography>
       <Grid container>
         <ReviewsComponent rating={rating} />{rating} ({numReviews})
       </Grid>

@@ -8,6 +8,8 @@ import ProductItemsList from './components/productItems/ProductItemsList';
 import SingleItemDisplay from './components/productItems/singleItem/SingleItemView';
 import PageNotFound from './components/pageNotFound/PageNotFound';
 import ProgressBar from './components/loading/ProgressBar';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 
 const PRODUCTSCATEGORY = ['phones', 'laptops', 'tablets']; // ADD ANY PRODUCTS ADDED TO THE MONGO DATABASE HERE
 
@@ -36,7 +38,6 @@ const App = () => {
 
   const fetchProductItems = async (productList) => {
     try {
-      // setFetchedProductItems([]);
       setProgressBar(true);
       const response = await fetch(`${PRODUCTS_URL}/${productList}`);
       const data = await response.json();
@@ -70,9 +71,13 @@ const App = () => {
   return (
     <React.Fragment>
       <header>
-        <TopBar cartItems={cart} />
-        <NavigationBar productsCategories={PRODUCTSCATEGORY} fetchProductsFunc={fetchProductItems} />
-        {progressBar && <ProgressBar />}
+        <AppBar style={{ background: 'darkblue' }}>
+          <TopBar cartItems={cart} />
+          <NavigationBar productsCategories={PRODUCTSCATEGORY} fetchProductsFunc={fetchProductItems} />
+          {progressBar && <ProgressBar />}
+        </AppBar>
+        <Toolbar />
+        <Toolbar />
       </header>
       <Switch>
         <Route exact path='/'>

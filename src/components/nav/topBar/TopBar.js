@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 // import { alpha, makeStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 
-import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -184,24 +183,23 @@ export default function PrimarySearchAppBar({ cartItems }) {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" style={{ background: 'darkblue' }}>
-        <Toolbar>
-          <IconButton
-          // edge="start"
-          // className={classes.menuButton}
-          // color="inherit"
-          // aria-label="open drawer"
-          >
-            {/* <MenuIcon /> */}
-            <Typography className={classes.titleInitials} variant="h6" noWrap color='secondary'>
-              H T S
-            </Typography>
-          </IconButton>
-          <Typography component={Link} to='/' className={classes.title} variant="h6" noWrap>
-            Horacinis Tech Store
+      <Toolbar>
+        <IconButton
+        // edge="start"
+        // className={classes.menuButton}
+        // color="inherit"
+        // aria-label="open drawer"
+        >
+          {/* <MenuIcon /> */}
+          <Typography className={classes.titleInitials} variant="h6" noWrap color='secondary'>
+            H T S
           </Typography>
+        </IconButton>
+        <Typography component={Link} to='/' className={classes.title} variant="h6" noWrap>
+          Horacinis Tech Store
+        </Typography>
 
-          {/* <div className={classes.search}>
+        {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -214,34 +212,34 @@ export default function PrimarySearchAppBar({ cartItems }) {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div> */}
-          <div className={classes.grow} />
-          <IconButton aria-label="show all products quantity in cart" color="inherit" component={Link} to='/cart'>
-            <Badge badgeContent={getProductsQuantity()} color="secondary">
-              <CartIcon />
-            </Badge>
-          </IconButton>
-          <IconButton
-            edge="end"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-            onClick={handleProfileMenuOpen}
-            color="inherit"
-          >
-            <AccountCircle />
-          </IconButton>
-          <div className={classes.sectionDesktop}>
-            {/* <IconButton aria-label="show 4 new mails" color="inherit">
+        <div className={classes.grow} />
+        <IconButton aria-label="show all products quantity in cart" color="inherit" component={Link} to='/cart'>
+          <Badge badgeContent={getProductsQuantity()} color="secondary">
+            <CartIcon />
+          </Badge>
+        </IconButton>
+        <IconButton
+          edge="end"
+          aria-label="account of current user"
+          aria-controls={menuId}
+          aria-haspopup="true"
+          onClick={handleProfileMenuOpen}
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+        <div className={classes.sectionDesktop}>
+          {/* <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <CartIcon />
               </Badge>
             </IconButton> */}
-            {/* <IconButton aria-label="show 17 new notifications" color="inherit">
+          {/* <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton> */}
-            {/* <IconButton
+          {/* <IconButton
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
@@ -251,8 +249,8 @@ export default function PrimarySearchAppBar({ cartItems }) {
             >
               <AccountCircle />
             </IconButton> */}
-          </div>
-          {/* <div className={classes.sectionMobile}>
+        </div>
+        {/* <div className={classes.sectionMobile}>
             <IconButton
               aria-label="show more"
               aria-controls={mobileMenuId}
@@ -263,8 +261,7 @@ export default function PrimarySearchAppBar({ cartItems }) {
               <MoreIcon />
             </IconButton>
           </div> */}
-        </Toolbar>
-      </AppBar>
+      </Toolbar>
       {renderMobileMenu}
       {renderMenu}
     </div>

@@ -94,10 +94,10 @@ const NavigationBar = ({ productsCategories, fetchProductsFunc }) => {
           <Tab label="more" component={Link} to={'/products/test2'} {...a11yProps(2)} />
           <Tab label="more" component={Link} to={'/products/test3'} {...a11yProps(3)} />
           <Tab label="more" component={Link} to={'/products/test4'} {...a11yProps(4)} />
-          <Tab label="more" component={Link} to={'/products/test5'} {...a11yProps(5)} />
-          <Tab label="more" component={Link} to={'/products/test6'} {...a11yProps(6)} />
-          <Tab label="more" component={Link} to={'/products/test7'} {...a11yProps(7)} />
-          <Tab label="more" component={Link} to={'/products/test8'} {...a11yProps(8)} />
+          {/* <Tab label="more" component={Link} to={'/products/test5'} {...a11yProps(5)} /> */}
+          {/* <Tab label="more" component={Link} to={'/products/test6'} {...a11yProps(6)} /> */}
+          {/* <Tab label="more" component={Link} to={'/products/test7'} {...a11yProps(7)} /> */}
+          {/* <Tab label="more" component={Link} to={'/products/test8'} {...a11yProps(8)} /> */}
         </Tabs>
       </AppBar>
     </div >

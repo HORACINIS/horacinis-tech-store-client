@@ -71,7 +71,7 @@ const App = () => {
   return (
     <React.Fragment>
       <header>
-        <AppBar style={{ background: 'darkblue' }}>
+        <AppBar style={{ backgroundImage: 'linear-gradient(darkBlue, blue)' }}>
           <TopBar cartItems={cart} />
           <NavigationBar productsCategories={PRODUCTSCATEGORY} fetchProductsFunc={fetchProductItems} />
           {progressBar && <ProgressBar />}

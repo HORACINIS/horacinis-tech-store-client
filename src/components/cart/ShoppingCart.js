@@ -59,7 +59,7 @@ const ShoppingCart = ({ cartItems, setCartItems }) => {
                 <PlusIcon />
               </Button>
             </p>
-            <p>Description: {product.description}</p>
+            {/* <p>Description: {product.description}</p> */}
             <p>${product.price}</p>
             <Button variant='outlined' color='secondary' onClick={() => handleRemoveSingleProduct(product)}>
               Remove

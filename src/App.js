@@ -41,7 +41,6 @@ const App = () => {
       setProgressBar(true);
       const response = await fetch(`${PRODUCTS_URL}/${productList}`);
       const data = await response.json();
-      setFetchedProductItems([]);
       setFetchedProductItems(data.data[`${productList}`]);
       setProgressBar(false);
     } catch (err) {

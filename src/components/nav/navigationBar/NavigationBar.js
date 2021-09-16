@@ -77,7 +77,7 @@ const NavigationBar = ({ productsCategories, fetchProductsFunc }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color='inherit'>
+      <AppBar position="static" color='default'>
         <Tabs
           value={value}
           onChange={handleChange}

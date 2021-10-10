@@ -4,6 +4,7 @@ import ReviewsComponent from './../ReviewsComponent';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ImageStepper from './../../imageStepper/ImageStepper';
 
 const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCategory, addToCartFunc }) => {
   const { name } = useParams();
@@ -15,7 +16,7 @@ const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCate
   return (
     <div>
       {fetchedProductsList.filter(product => product.name === name).map((product) => {
-        const { _id, name, category, rating, numReviews, image, description, price } = product;
+        const { _id, name, category, rating, numReviews, description, price, moreImages } = product;
         return (
           <List key={_id}>
             <Link to={`/products/${category}`}>Back to {category}</Link>
@@ -24,7 +25,7 @@ const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCate
                 <div><ReviewsComponent rating={rating} />{rating} ({numReviews})</div>
                 <h2>{name}</h2>
                 <p>SKU: {_id}</p>
-                <p><img src={image} alt='product' width='300px' /></p>
+                <ImageStepper moreImages={moreImages} />
                 <p>{description}</p>
                 <h3>${price}.00</h3>
                 <Button color='secondary' variant='outlined'

@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   img: {
-    maxWidth: 300,
+    maxWidth: 400,
     overflow: 'hidden',
     display: 'block',
     width: '100%',

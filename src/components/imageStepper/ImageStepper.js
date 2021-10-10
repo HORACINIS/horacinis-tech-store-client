@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import SwipeableViews from 'react-swipeable-views';
+import { autoPlay } from 'react-swipeable-views-utils';
 import { useTheme } from '@material-ui/core/styles';
 import useStyles from './imageStepperStyles';
 
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const ImageStepper = ({ moreImages }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = moreImages.length;
 
   const handleNext = () => {
@@ -21,16 +24,26 @@ const ImageStepper = ({ moreImages }) => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const handleStepChange = (step) => {
+    setActiveStep(step);
+  };
+
   return (
     <div className={classes.root}>
-      {/* <Paper square elevation={0} className={classes.header}>
-        <Typography>{moreImages[activeStep].label}</Typography>
-      </Paper> */}
-      <img
-        className={classes.img}
-        src={moreImages[activeStep]}
-        alt={moreImages[activeStep]}
-      />
+      <AutoPlaySwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={activeStep}
+        onChangeIndex={handleStepChange}
+        enableMouseEvents
+      >
+        {moreImages.map((step, index) => (
+          <div key={step}>
+            {Math.abs(activeStep - index) <= 2 ? (
+              <img className={classes.img} src={step} alt={step} />
+            ) : null}
+          </div>
+        ))}
+      </AutoPlaySwipeableViews>
       <MobileStepper
         steps={maxSteps}
         position="static"

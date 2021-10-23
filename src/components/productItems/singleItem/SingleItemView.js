@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReviewsComponent from './../ReviewsComponent';
 import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import ImageStepper from './../../imageStepper/ImageStepper';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
 const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCategory, addToCartFunc }) => {
   const { name } = useParams();
@@ -18,23 +19,30 @@ const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCate
       {fetchedProductsList.filter(product => product.name === name).map((product) => {
         const { _id, name, category, rating, numReviews, description, price, moreImages } = product;
         return (
-          <List key={_id}>
-            <Link to={`/products/${category}`}>Back to {category}</Link>
-            <ListItem>
-              <div>
-                <div><ReviewsComponent rating={rating} />{rating} ({numReviews})</div>
-                <h2>{name}</h2>
-                <p>SKU: {_id}</p>
-                <ImageStepper moreImages={moreImages} />
-                <p>{description}</p>
-                <h3>${price}.00</h3>
-                <Button color='secondary' variant='outlined'
+          <Grid container key={_id} justifyContent='center' alignItems='center'>
+            <Grid item xs={12} sm={8} md={8} lg={8} xl={6}>
+              <Grid item>
+                <Link to={`/products/${category}`}>Back to {category}</Link>
+              </Grid>
+
+              <div><ReviewsComponent rating={rating} />{rating} ({numReviews})</div>
+              <h2>{name}</h2>
+              <p>SKU: {_id}</p>
+              <ImageStepper moreImages={moreImages} />
+              <Typography>{description}</Typography>
+            </Grid>
+
+            <Grid item sm={2} md={2} lg={2} xl={2}>
+              <Paper elevation={3} style={{padding: '30px 10px 30px 10px', background: '#12239e'}}>
+                <Typography variant='h5' align='center' color='secondary' >${price}.00</Typography>
+                <Button color='secondary' variant='contained' fullWidth style={{marginTop: '20px'}}
                   onClick={() => addToCartFunc(product)}
                 >Add to Cart
                 </Button>
-              </div>
-            </ListItem>
-          </List>
+              </Paper>
+
+            </Grid>
+          </Grid>
         )
       })}
     </div>

@@ -4,11 +4,11 @@ import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
+// import { autoPlay } from 'react-swipeable-views-utils';
 import { useTheme } from '@material-ui/core/styles';
 import useStyles from './imageStepperStyles';
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+// const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const ImageStepper = ({ moreImages }) => {
   const classes = useStyles();
@@ -30,7 +30,7 @@ const ImageStepper = ({ moreImages }) => {
 
   return (
     <div className={classes.root}>
-      <AutoPlaySwipeableViews
+      <SwipeableViews     // AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
         onChangeIndex={handleStepChange}
@@ -43,7 +43,7 @@ const ImageStepper = ({ moreImages }) => {
             ) : null}
           </div>
         ))}
-      </AutoPlaySwipeableViews>
+      </SwipeableViews>
       <MobileStepper
         steps={maxSteps}
         position="static"

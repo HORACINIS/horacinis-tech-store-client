@@ -18,7 +18,7 @@ const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCate
   }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div>
+    <>
       {fetchedProductsList.filter(product => product.name === name).map((product) => {
         const { _id, name, category, rating, numReviews, description, price, moreImages, features } = product;
         return (
@@ -43,14 +43,14 @@ const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCate
                 <List>
                   {features.length > 0 && (<Typography gutterBottom variant="h6">Key Features</Typography>)}
                   {features.map((feature, index) => (
-                    <ListItem key={index}>{feature}</ListItem>
+                    <ListItem selected key={index}>{feature}</ListItem>
                   ))}
                 </List>
               }
             </Grid>
             <Grid item xs={12} sm={2} md={2} lg={2} xl={2}>
               <Paper elevation={3} style={{ padding: '30px 10px 30px 10px', background: '#12239e' }}>
-                <Typography variant='h5' align='center' color='secondary' >${price}.00</Typography>
+                <Typography variant='h5' align='center' color='secondary' >$ {price}.00</Typography>
                 <Button color='secondary' variant='contained' fullWidth style={{ marginTop: '20px' }}
                   onClick={() => addToCartFunc(product)}
                 >Add to Cart
@@ -60,12 +60,11 @@ const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCate
                   <Typography variant='subtitle2'>13 48 66</Typography>
                 </Box>
               </Paper>
-
             </Grid>
           </Grid>
         )
       })}
-    </div>
+    </>
   )
 }
 

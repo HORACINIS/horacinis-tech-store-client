@@ -38,6 +38,7 @@ const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCate
               <h2>{name}</h2>
               <p>SKU: {_id}</p>
               <ImageStepper moreImages={moreImages} />
+              <Typography gutterBottom variant="h6">Overview</Typography>
               <Typography style={{ margin: '20px 0px 40px 0px' }}>{description}</Typography>
               {features &&
                 <List>

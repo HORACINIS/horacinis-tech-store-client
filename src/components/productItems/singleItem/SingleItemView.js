@@ -41,12 +41,13 @@ const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCate
               <p>SKU: {_id}</p>
               <ImageStepper moreImages={moreImages} />
               <Typography style={{ margin: '20px 0px 40px 0px' }}>{description}</Typography>
-              {features.length > 0 && <List>
-                <Typography gutterBottom variant="h6">Key Features</Typography>
-                {features.map((feature, index) => (
-                  <ListItem key={index}>{feature}</ListItem>
-                ))}
-              </List>
+              {features &&
+                <List>
+                  {features.length > 0 && (<Typography gutterBottom variant="h6">Key Features</Typography>)}
+                  {features.map((feature, index) => (
+                    <ListItem key={index}>{feature}</ListItem>
+                  ))}
+                </List>
               }
             </Grid>
 

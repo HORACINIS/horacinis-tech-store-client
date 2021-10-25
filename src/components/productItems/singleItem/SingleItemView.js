@@ -21,14 +21,12 @@ const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCate
     <div>
       {fetchedProductsList.filter(product => product.name === name).map((product) => {
         const { _id, name, category, rating, numReviews, description, price, moreImages, features } = product;
-        console.log(features)
         return (
           <Grid container key={_id} justifyContent='center' alignItems='center'>
             <Grid item xs={12} sm={8} md={8} lg={8} xl={6}>
               <Grid item style={{ marginTop: '20px' }}>
                 <Link to={`/products/${category}`}>Back to {category}</Link>
               </Grid>
-
               <Grid container style={{ marginTop: '40px' }}>
                 <Grid item>
                   <ReviewsComponent rating={rating} />
@@ -50,7 +48,6 @@ const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCate
                 </List>
               }
             </Grid>
-
             <Grid item xs={12} sm={2} md={2} lg={2} xl={2}>
               <Paper elevation={3} style={{ padding: '30px 10px 30px 10px', background: '#12239e' }}>
                 <Typography variant='h5' align='center' color='secondary' >${price}.00</Typography>

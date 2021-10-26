@@ -35,6 +35,7 @@ switch (process.env.REACT_APP_NODE_ENV) {
 const App = () => {
   const [fetchedProductItems, setFetchedProductItems] = useState([]);
   const [progressBar, setProgressBar] = useState(false);
+  const [tabSelectedValue, setTabSelectedValue] = useState(false);
 
   const fetchProductItems = async (productList) => {
     try {
@@ -73,7 +74,11 @@ const App = () => {
       <header>
         <AppBar style={{ background: 'linear-gradient(180deg, rgba(0,14,255,1) 28%, rgba(5,160,247,1) 81%)' }}>
           <TopBar cartItems={cart} />
-          <NavigationBar productsCategories={PRODUCTSCATEGORY} fetchProductsFunc={fetchProductItems} />
+          <NavigationBar
+            productsCategories={PRODUCTSCATEGORY}
+            tabSelectedValue={tabSelectedValue}
+            setTabSelectedValue={setTabSelectedValue}
+          />
           {progressBar && <ProgressBar />}
         </AppBar>
         <Toolbar />
@@ -81,7 +86,7 @@ const App = () => {
       </header>
       <Switch>
         <Route exact path='/'>
-          <HeroCover />
+          <HeroCover setTabSelectedValue={setTabSelectedValue} />
         </Route>
         {PRODUCTSCATEGORY.map((product, index) => (
           // product here refers to 'phones' or 'laptops', etc (from the category array at the top)
@@ -93,11 +98,17 @@ const App = () => {
         {PRODUCTSCATEGORY.map((productCategory, index) => (
           <Route key={index} exact path={`/products/${productCategory}/:name`}>
             {/* {console.log(`/products/${productCategory}/:id`)} */}
-            <SingleItemDisplay fetchProductItems={fetchProductItems} productCategory={productCategory} fetchedProductsList={fetchedProductItems} addToCartFunc={handleAddToCart} />
+            <SingleItemDisplay
+              fetchProductItems={fetchProductItems}
+              productCategory={productCategory}
+              fetchedProductsList={fetchedProductItems}
+              addToCartFunc={handleAddToCart}
+              setTabSelectedValue={setTabSelectedValue}
+            />
           </Route>
         ))}
         <Route exact path='/cart'>
-          <ShoppingCart cartItems={cart} setCartItems={setCart} />
+          <ShoppingCart cartItems={cart} setCartItems={setCart} setTabSelectedValue={setTabSelectedValue} />
         </Route>
         <Route path='*'>
           <PageNotFound />

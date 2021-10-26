@@ -10,13 +10,14 @@ import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
-const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCategory, addToCartFunc }) => {
+const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCategory, addToCartFunc, setTabSelectedValue }) => {
   const { name } = useParams();
   const location = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetchProductItems(productCategory)
+    fetchProductItems(productCategory);
+    setTabSelectedValue(false);
   }, [location]); //eslint-disable-line react-hooks/exhaustive-deps
 
   return (

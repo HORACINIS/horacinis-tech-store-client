@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -49,37 +49,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NavigationBar = ({ productsCategories, fetchProductsFunc }) => {
+const NavigationBar = ({ productsCategories, tabSelectedValue, setTabSelectedValue }) => {
   const classes = useStyles();
   const history = useHistory();
-  const [value, setValue] = useState(false);
+  // const [value, setValue] = useState(false);
 
   const handleChange = (event, newValue) => {
     // console.log(productsCategories)
     // console.log(event.target.textContent)
     // console.log(value)
-    setValue(newValue)
+    setTabSelectedValue(newValue)
   };
 
   useEffect(() => {
-    if (history.location.pathname !== '/') {
+    // if (history.location.pathname !== '/') {
       productsCategories.forEach((product, index) => {
         if (history.location.pathname === `/products/${product}`) {
-          setValue(index);
+          setTabSelectedValue(index);
         }
       });
-    }
-    if (history.location.pathname === '/') {
-      // console.log('HOME PAGE HISTORY', history.location.pathname)
-      setValue(false);
-    }
-  }, [value, history.location.pathname, productsCategories]);
+    // }
+    // if (history.location.pathname === '/') {
+    //   // console.log('HOME PAGE HISTORY', history.location.pathname)
+    //   setTabSelectedValue(false);
+    // }
+  }, [setTabSelectedValue, history.location.pathname, productsCategories]);
 
   return (
     <div className={classes.root}>
       <AppBar position="static" color='default'>
         <Tabs
-          value={value}
+          value={tabSelectedValue}
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
@@ -89,7 +89,7 @@ const NavigationBar = ({ productsCategories, fetchProductsFunc }) => {
         >
           {/* <Tab label="home" component={Link} to={'/'} {...a11yProps(-1)} />  ** THIS COULD BE A HOME ICON ** */}
           {productsCategories.map((product, index) => (
-            <Tab key={index} label={product} component={Link} to={`/products/${product}`} {...a11yProps({ value })} />
+            <Tab key={index} label={product} component={Link} to={`/products/${product}`} {...a11yProps({ tabSelectedValue })} />
           ))}
           <Tab label="more" component={Link} to={'/products/test2'} {...a11yProps(2)} />
           <Tab label="more" component={Link} to={'/products/test3'} {...a11yProps(3)} />

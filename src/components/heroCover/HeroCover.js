@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 import underConstruction from './../../assets/under-construction.png';
 
-const HeroCover = () => {
+const HeroCover = ({ setTabSelectedValue }) => {
+  useEffect(() => {
+    setTabSelectedValue(false);
+  }, [setTabSelectedValue]);
   return (
     <div>
       <h1>HOME PAGE</h1>

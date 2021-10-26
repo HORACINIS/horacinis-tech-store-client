@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import PlusIcon from '@material-ui/icons/Add';
 import LessIcon from '@material-ui/icons/Remove';
 import underConstruction from './../../assets/under-construction.png';
 
-const ShoppingCart = ({ cartItems, setCartItems }) => {
+const ShoppingCart = ({ cartItems, setCartItems, setTabSelectedValue }) => {
+  useEffect(() => {
+    setTabSelectedValue(false);
+  }, [setTabSelectedValue]);
 
   const getTotalPrice = () => {
     return cartItems.reduce((sum, { price, quantity }) => sum + price * quantity, 0);

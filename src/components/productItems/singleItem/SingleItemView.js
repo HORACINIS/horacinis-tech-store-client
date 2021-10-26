@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import ReviewsComponent from './../ReviewsComponent';
 import Button from '@material-ui/core/Button';
 import ImageStepper from './../../imageStepper/ImageStepper';
@@ -12,10 +12,12 @@ import ListItem from '@material-ui/core/ListItem';
 
 const SingleItemDisplay = ({ fetchedProductsList, fetchProductItems, productCategory, addToCartFunc }) => {
   const { name } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetchProductItems(productCategory)
-  }, []); //eslint-disable-line react-hooks/exhaustive-deps
+  }, [location]); //eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

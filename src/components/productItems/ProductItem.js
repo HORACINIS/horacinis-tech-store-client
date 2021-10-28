@@ -14,6 +14,12 @@ const useStyles = makeStyles((theme) => ({
   control: {
     padding: theme.spacing(1),
   },
+  name: {
+    minHeight: '70px'
+  },
+  imageGridComponent: {
+    margin: '15px 0px 15px 0px'
+  },
   image: {
     width: 150,
   },
@@ -35,21 +41,29 @@ const ProductItem = ({ product, addToCartFunc, cart }) => {
   const { image, name, numReviews, price, category, rating, addedToCart } = isProductInCart;
   return (
     <Paper className={classes.control}>
-      <Typography variant='subtitle2' align='left' style={{ minHeight: '70px' }}>{name}</Typography>
+      <Typography variant='subtitle2' align='left' className={classes.name}>{name}</Typography>
       <Grid container>
-        <ReviewsComponent rating={rating} />{rating} ({numReviews})
+        <Grid item>
+          <ReviewsComponent rating={rating} />
+        </Grid>
+        <Grid item>
+          <Typography variant='inherit'>{rating}</Typography>
+        </Grid>
+        <Grid item>
+          <Typography variant='inherit'>({numReviews})</Typography>
+        </Grid>
       </Grid>
 
-      <div align='center'>
+      <Grid item align='center' className={classes.imageGridComponent}>
         <Link to={`/products/${category}/${name}`}>
           <img className={classes.image} src={image} alt={name} />
         </Link>
-      </div>
+      </Grid>
 
       <Paper>
         <Grid container justifyContent="space-between">
           <Grid item>
-            <Typography variant='h5'>${price}</Typography>
+            <Typography variant='h5'>{`$ ${price}`}</Typography>
           </Grid>
           <Grid>
             {!addedToCart ?

@@ -11,7 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import emptyCart from './../../assets/empty-cart-icon.png';
+import { ReactComponent as EmptyCart } from './../../assets/empty-cart.svg';
 import useStyles from './shoppingCartStyles';
 
 const ShoppingCart = ({ cartItems, setCartItems, setTabSelectedValue }) => {
@@ -123,7 +123,7 @@ const ShoppingCart = ({ cartItems, setCartItems, setTabSelectedValue }) => {
           (
             <React.Fragment>
               <Grid>
-                <img src={emptyCart} alt='empty cart' className={classes.emptyCartIcon} />
+                <EmptyCart width={140} className={classes.emptyCartIcon} />
               </Grid>
               <Grid item>
                 <Typography variant='h6' className={classes.emptyCartSubtitle}>Your Shopping Cart is empty!</Typography>

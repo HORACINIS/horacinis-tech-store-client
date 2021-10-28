@@ -7,23 +7,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import AddToShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import AddedToShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  control: {
-    padding: theme.spacing(1),
-  },
-  name: {
-    minHeight: '70px'
-  },
-  imageGridComponent: {
-    margin: '15px 0px 15px 0px'
-  },
-  image: {
-    width: 150,
-  },
-}));
+import useStyles from './productItemStyles';
 
 const ProductItem = ({ product, addToCartFunc, cart }) => {
   const classes = useStyles();

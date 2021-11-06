@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-// import MenuIcon from '@material-ui/icons/Menu';
+import { ReactComponent as HTS } from './../../../assets/HTS.svg';
 // import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import CartIcon from '@material-ui/icons/ShoppingCart';
@@ -185,17 +185,16 @@ export default function PrimarySearchAppBar({ cartItems }) {
     <div className={classes.grow}>
       <Toolbar>
         <IconButton
-        // edge="start"
-        // className={classes.menuButton}
-        // color="inherit"
-        // aria-label="open drawer"
+          edge="start"
+          // className={classes.menuButton}
+          aria-label="open drawer"
         >
-          {/* <MenuIcon /> */}
-          <Typography className={classes.titleInitials} variant="h6" noWrap color='secondary'>
+          <HTS style={{ width: '56px', height: '56px' }} /> {/** TESTING THIS SVG LOGO */}
+          {/* <Typography className={classes.titleInitials} variant="h6" noWrap color='secondary'> 
             H T S
-          </Typography>
+          </Typography> */}
         </IconButton>
-        <Typography component={Link} to='/' className={classes.title} variant="h6" noWrap>
+        <Typography component={Link} to='/' className={classes.title} variant="h6">
           Horacinis Tech Store
         </Typography>
 
